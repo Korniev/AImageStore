@@ -1,0 +1,38 @@
+{% extends 'aimagestore/base.html' %}
+{% load i18n %}
+{% block content %}
+<form class="form-login" method="post">
+
+    {% csrf_token %}
+    <div class="form-area">
+        <p class="data-name">{% trans "Email" %}</p>
+        {{ form.email }}
+        {% if form.errors.email %}
+        <p class="error-message">{{ form.errors.email }}</p>
+        {% endif %}
+    </div>
+    <div class="form-area">
+        <p class="data-name">{% trans "Password" %}</p>
+        {{ form.password }}
+        {% if form.errors.password %}
+        <p class="error-message">{{ form.errors.password }}</p>
+        {% endif %}
+    </div>
+
+    <div class="other-options">
+        <a class="login__link" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
+        <a class="login__link" href="{% url 'accounts:email' %}">{% trans "Forgot password?" %}</a>
+    </div>
+
+    {% if form.errors and form.non_field_errors %}
+    <p>{{form.non_field_errors}}</p>
+    {% endif %}
+
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    <button class="account-button register-button" type="submit">{% trans "Login" %}</button>
+</form>
+{% endblock %}

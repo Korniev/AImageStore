@@ -1,0 +1,19 @@
+{% extends 'aimagestore/base.html' %}
+{% load i18n %}
+{% block content %}
+<form class="form-login" method="post">
+    {% csrf_token %}
+    <p class="title-for-account">{% trans "Enter your email" %}</p>
+    <div class="form-area">
+        <p class="data-name">{% trans "Email" %}</p>
+        <input class="data-input" type="email" name="email" id="email" placeholder="Пошта">
+
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    <button class="account-button" type="submit">{% trans "Send" %}</button>
+</form>
+{% endblock %}

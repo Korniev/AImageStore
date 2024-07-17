@@ -1,0 +1,49 @@
+{% extends 'aimagestore/base.html' %}
+{% load i18n %}
+{% block content %}
+<form class="form-login" method="post">
+    {% csrf_token %}
+    <div class="form-area register-area">
+        <p class="data-name">{% trans "Username" %}</p>
+        {{ form.username }}
+        {% if form.errors.username %}
+        <p class="error-message">{{ form.errors.username }}</p>
+        {% endif %}
+    </div>
+    <div class="form-area register-area">
+        <p class="data-name">{% trans "Email" %}</p>
+        {{ form.email }}
+        {% if form.errors.email %}
+        <p class="error-message">{{ form.errors.email }}</p>
+        {% endif %}
+    </div>
+    <div class="form-area register-area">
+        <p class="data-name">{% trans "Password" %}</p>
+        {{ form.password1 }}
+        {% if form.errors.password1 %}
+        <p class="error-message">{{ form.errors.password1 }}</p>
+        {% endif %}
+    </div>
+    <div class="form-area register-area">
+        <p class="data-name">{% trans "Repeat password" %}</p>
+        {{ form.password2 }}
+        {% if form.errors.password2 %}
+        <p class="error-message">{{ form.errors.password2 }}</p>
+        {% endif %}
+    </div>
+    <div class="other-options">
+        <a class="login__link" href="{% url 'accounts:login' %}">{% trans "Account already exist" %}</a>
+        <a class="login__link" href="{% url 'accounts:email' %}">{% trans "Forgot password?" %}</a>
+    </div>
+    {% if form.errors and form.non_field_errors %}
+    <p>{{form.non_field_errors}}</p>
+    {% endif %}
+    {% if messages %}
+    {% for message in messages %}L
+    <p>{{ message }}</p>L
+    {% endfor %}
+    {% endif %}
+    <button class="account-button register-button" type="submit">{% trans "Register" %}</button>
+</form>
+
+{% endblock %}

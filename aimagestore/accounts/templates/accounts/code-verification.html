@@ -1,0 +1,26 @@
+{% extends 'aimagestore/base.html' %}
+{% load i18n %}
+{% block content %}
+    <form class="form-login" method="POST">
+        {% csrf_token %}
+        <p class="title-for-account">{% trans "Enter code to verify" %}</p>
+        <div class="form-area">
+            <p class="data-name">{% trans "Code" %}</p>
+            <div class="code-form">
+                <input class="data-input code-input" type="number" name="otp_digit">
+            </div>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <button class="account-button code-verify-btn">{% trans "Confirm" %}</button>
+    </form>
+
+    <form action="{% url 'accounts:resend-otp' %}" class="other-options" method="post">
+        {% csrf_token %}
+        <button class="login__link" type="submit">{% trans "Resend code" %}</button>
+    </form>
+
+{% endblock %}
