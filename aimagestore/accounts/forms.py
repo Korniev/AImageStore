@@ -5,11 +5,42 @@ from django.forms import PasswordInput, CharField, EmailField, TextInput, EmailI
 from .models import User
 from django.utils.translation import gettext as _
 
+
 class RegisterForm(UserCreationForm):
-    username = CharField(max_length=100, min_length=3, required=True, widget=TextInput(attrs={"class": "data-input"}))
-    email = EmailField(max_length=100, required=True, widget=EmailInput(attrs={"class": "data-input"}))
-    password1 = CharField(required=True, widget=PasswordInput(attrs={"class": "data-input"}))
-    password2 = CharField(required=True, widget=PasswordInput(attrs={"class": "data-input"}))
+    username = CharField(
+        max_length=100,
+        min_length=3,
+        required=True,
+        widget=TextInput(attrs={"class": "data-input"}),
+        error_messages={
+            'required': _("Username is required."),
+            'min_length': _("Username must be at least 3 characters long."),
+        }
+    )
+    email = EmailField(
+        max_length=100,
+        required=True,
+        widget=EmailInput(attrs={"class": "data-input"}),
+        error_messages={
+            'required': _("Email is required."),
+            'invalid': _("Enter a valid email address."),
+        }
+    )
+    password1 = CharField(
+        required=True,
+        widget=PasswordInput(attrs={"class": "data-input"}),
+        error_messages={
+            'required': _("Password is required."),
+        }
+    )
+    password2 = CharField(
+        required=True,
+        widget=PasswordInput(attrs={"class": "data-input"}),
+        error_messages={
+            'required': _("Confirm your password."),
+            'password_mismatch': _("Passwords do not match."),
+        }
+    )
 
     class Meta:
         model = User

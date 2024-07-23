@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-17 13:56+0300\n"
+"POT-Creation-Date: 2024-07-23 14:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,27 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\accounts\forms.py:21
+#: .\accounts\forms.py:15
+msgid "Username is required."
+msgstr ""
+
+#: .\accounts\forms.py:16
+msgid "Username must be at least 3 characters long."
+msgstr ""
+
+#: .\accounts\forms.py:24
+msgid "Email is required."
+msgstr ""
+
+#: .\accounts\forms.py:25
+msgid "Enter a valid email address."
+msgstr ""
+
+#: .\accounts\forms.py:32
+msgid "Password is required."
+msgstr ""
+
+#: .\accounts\forms.py:39
+msgid "Confirm your password."
+msgstr ""
+
+#: .\accounts\forms.py:40 .\accounts\views.py:145
+msgid "Passwords do not match."
+msgstr ""
+
+#: .\accounts\forms.py:51
 msgid "This email is already in use!"
 msgstr ""
 
-#: .\accounts\forms.py:27
+#: .\accounts\forms.py:57
 msgid "This field is required."
 msgstr ""
 
-#: .\accounts\forms.py:36
+#: .\accounts\forms.py:66
 msgid "This password is too short. It must contain at least 8 characters!"
 msgstr ""
 
-#: .\accounts\forms.py:38
+#: .\accounts\forms.py:68
 msgid "This password must contain at least one character that is not a digit!"
 msgstr ""
 
-#: .\accounts\forms.py:40
+#: .\accounts\forms.py:70
 msgid "The password is too similar to the username!"
 msgstr ""
 
-#: .\accounts\forms.py:42
+#: .\accounts\forms.py:72
 msgid "The two password fields didn’t match."
 msgstr ""
 
@@ -54,66 +82,98 @@ msgstr ""
 msgid "Username is required!"
 msgstr ""
 
-#: .\accounts\templates\accounts\code-verification.html:5
+#: .\accounts\templates\accounts\code-verification.html:6
 msgid "Enter code to verify"
 msgstr ""
 
-#: .\accounts\templates\accounts\code-verification.html:7
+#: .\accounts\templates\accounts\code-verification.html:8
 msgid "Code"
 msgstr ""
 
-#: .\accounts\templates\accounts\code-verification.html:17
+#: .\accounts\templates\accounts\code-verification.html:18
 msgid "Confirm"
 msgstr ""
 
-#: .\accounts\templates\accounts\code-verification.html:22
+#: .\accounts\templates\accounts\code-verification.html:23
 msgid "Resend code"
 msgstr ""
 
-#: .\accounts\templates\accounts\email.html:5
+#: .\accounts\templates\accounts\email.html:6
 msgid "Enter your email"
 msgstr ""
 
-#: .\accounts\templates\accounts\email.html:7
-#: .\accounts\templates\accounts\login.html:7
+#: .\accounts\templates\accounts\email.html:8
+#: .\accounts\templates\accounts\login.html:8
 #: .\accounts\templates\accounts\register.html:14
 msgid "Email"
 msgstr ""
 
-#: .\accounts\templates\accounts\email.html:16
+#: .\accounts\templates\accounts\email.html:17
 msgid "Send"
 msgstr ""
 
-#: .\accounts\templates\accounts\login.html:14
+#: .\accounts\templates\accounts\email_template.html:7
+msgid "Mail from AImageStore"
+msgstr ""
+
+#: .\accounts\templates\accounts\email_template.html:245
+msgid "Please confirm your email"
+msgstr ""
+
+#: .\accounts\templates\accounts\email_template.html:247
+msgid "AImageStore email confirmation"
+msgstr ""
+
+#: .\accounts\templates\accounts\email_template.html:253
+msgid "Hello "
+msgstr ""
+
+#: .\accounts\templates\accounts\email_template.html:254
+msgid "Your email verification code:"
+msgstr ""
+
+#: .\accounts\templates\accounts\email_template.html:272
+msgid "The code is valid for 5 minutes."
+msgstr ""
+
+#: .\accounts\templates\accounts\email_template.html:273
+msgid "If you have not sent a request, you can ignore the text of this letter."
+msgstr ""
+
+#: .\accounts\templates\accounts\email_template.html:274
+msgid "Best wishes from the AImageStore team."
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:15
 #: .\accounts\templates\accounts\register.html:21
 msgid "Password"
 msgstr ""
 
-#: .\accounts\templates\accounts\login.html:22
+#: .\accounts\templates\accounts\login.html:23
 #: .\accounts\templates\accounts\register.html:46
 #: .\aimagestore\templates\aimagestore\base.html:25
 msgid "Register"
 msgstr ""
 
-#: .\accounts\templates\accounts\login.html:23
+#: .\accounts\templates\accounts\login.html:24
 #: .\accounts\templates\accounts\register.html:36
 msgid "Forgot password?"
 msgstr ""
 
-#: .\accounts\templates\accounts\login.html:35
+#: .\accounts\templates\accounts\login.html:36
 #: .\aimagestore\templates\aimagestore\base.html:28
 msgid "Login"
 msgstr ""
 
-#: .\accounts\templates\accounts\new-password.html:6
+#: .\accounts\templates\accounts\new-password.html:7
 msgid "New password"
 msgstr ""
 
-#: .\accounts\templates\accounts\new-password.html:13
+#: .\accounts\templates\accounts\new-password.html:14
 msgid "Repeat new password"
 msgstr ""
 
-#: .\accounts\templates\accounts\new-password.html:19
+#: .\accounts\templates\accounts\new-password.html:20
 msgid "Change password"
 msgstr ""
 
@@ -127,6 +187,41 @@ msgstr ""
 
 #: .\accounts\templates\accounts\register.html:35
 msgid "Account already exist"
+msgstr ""
+
+#: .\accounts\views.py:19 .\accounts\views.py:47
+#, python-brace-format
+msgid "You are already logged in as {username}."
+msgstr ""
+
+#: .\accounts\views.py:34
+msgid "Please verify your email."
+msgstr ""
+
+#: .\accounts\views.py:88
+#, python-brace-format
+msgid "Congratulations {username}! You have verified your email."
+msgstr ""
+
+#: .\accounts\views.py:91 .\accounts\views.py:111 .\accounts\views.py:125
+#: .\accounts\views.py:149
+msgid "User with this email was not found."
+msgstr ""
+
+#: .\accounts\views.py:94
+msgid "Your code is incorrect."
+msgstr ""
+
+#: .\accounts\views.py:98
+msgid "Your code is no longer valid."
+msgstr ""
+
+#: .\accounts\views.py:109
+msgid "A new code has been sent."
+msgstr ""
+
+#: .\accounts\views.py:142
+msgid "Your password has been successfully changed."
 msgstr ""
 
 #: .\aimagestore\settings.py:128
