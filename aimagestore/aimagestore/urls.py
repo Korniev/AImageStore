@@ -19,13 +19,14 @@ from django.conf.urls.i18n import i18n_patterns
 from . import views, settings
 from django.contrib import admin
 from django.urls import path, include, re_path
-
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('classify/', include('image_classification.urls')),
     # path('', views.home, name='home'),
     # path('auth/', include('accounts.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(
     path('auth/', include('accounts.urls')),
