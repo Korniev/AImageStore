@@ -22,6 +22,8 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
+        </li>
           <a class="nav-link active" aria-current="page" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
         </li>
         <li class="nav-item">
@@ -47,6 +49,10 @@
             {% endfor %}
           </ul>
         </li>
+        <li class="nav-item">
+                    <a class="nav-link" href="{% url 'classify_image' %}">{% trans "Classify" %}</a>
+        </li>
+        <li class="nav-item">
       </ul>
     </div>
   </div>
