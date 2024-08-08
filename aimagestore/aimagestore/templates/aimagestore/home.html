@@ -1,6 +1,75 @@
 {% extends 'aimagestore/base.html' %}
+
 {% block content %}
-<div class="container">
-  {{trans}}
+<div class="container mt-5">
+    <h2>Welcome to the Animal Classification App!</h2>
+    <p>{{ trans }}</p>
+
+    <div id="chat-container">
+        <div id="messages">
+            <!-- Повідомлення будуть додаватися тут -->
+        </div>
+        <input type="text" id="chat-input" placeholder="Type your message here...">
+        <button id="send-button">Send</button>
+    </div>
 </div>
+
+<style>
+#chat-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+#messages {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#chat-input {
+    width: 80%;
+    padding: 5px;
+}
+
+#send-button {
+    width: 18%;
+    padding: 5px;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const chatInput = document.getElementById("chat-input");
+    const sendButton = document.getElementById("send-button");
+    const messages = document.getElementById("messages");
+
+    const chatSocket = new WebSocket(
+        'ws://' + window.location.host + '/ws/chat/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        const messageElement = document.createElement("div");
+        messageElement.textContent = "Bot: " + data.message;
+        messages.appendChild(messageElement);
+    };
+
+    sendButton.onclick = function() {
+        const message = chatInput.value;
+        chatSocket.send(JSON.stringify({
+            'message': message
+        }));
+        const messageElement = document.createElement("div");
+        messageElement.textContent = "You: " + message;
+        messages.appendChild(messageElement);
+        chatInput.value = '';
+    };
+});
+</script>
 {% endblock %}

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
+    'channels',
     'aimagestore',
     'accounts.apps.AccountsConfig',
     'image_classification.apps.ImageClassificationConfig',
@@ -77,6 +77,15 @@ TEMPLATES = [
         },
     },
 ]
+
+ASGI_APPLICATION = "aimagestore.asgi.application"
+
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+    },
+}
 
 WSGI_APPLICATION = "aimagestore.wsgi.application"
 
