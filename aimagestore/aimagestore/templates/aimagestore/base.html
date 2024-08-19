@@ -10,6 +10,93 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <title>AImageStore</title>
 
+    <style>
+      #chat-container {
+          position: fixed;
+          bottom: 80px;
+          right: 20px;
+          width: 400px;
+          max-height: 70%;
+          background: white;
+          border-radius: 10px;
+          box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+          overflow: hidden;
+          display: none;
+          flex-direction: column;
+      }
+
+      #chat-header {
+          background-color: #007bff;
+          color: white;
+          padding: 10px;
+          text-align: center;
+          cursor: pointer;
+      }
+
+      #messages {
+          padding: 10px;
+          overflow-y: auto;
+          flex: 1;
+      }
+
+      #chat-input-container {
+          display: flex;
+          padding: 10px;
+          background-color: #f1f1f1;
+      }
+
+      #chat-input {
+          flex: 1;
+          padding: 5px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+      }
+
+      #send-button {
+          padding: 5px 10px;
+          margin-left: 5px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+      .message {
+          margin-bottom: 10px;
+          padding: 5px;
+          border-radius: 5px;
+          word-wrap: break-word; /* Забезпечує перенесення довгих слів */
+      }
+
+      .message.user {
+          background-color: #e1ffc7;
+          text-align: right;
+      }
+
+      .message.bot {
+          background-color: #f1f1f1;
+          text-align: left;
+      }
+
+      /* Кнопка для відкриття/закриття чату */
+      #chat-toggle-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          font-size: 24px;
+          text-align: center;
+          line-height: 50px;
+          cursor: pointer;
+          z-index: 1000;
+      }
+    </style>
   </head>
   <body>
 
@@ -22,15 +109,15 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
+          <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
         </li>
+        <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  href="{% url 'accounts:login' %}">{% trans "Login" %}</a>
+          <a class="nav-link" href="{% url 'accounts:login' %}">{% trans "Login" %}</a>
         </li>
         <li class="nav-item dropdown">
-
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {% trans "Language" %}
           </a>
@@ -41,29 +128,91 @@
 
             {% for lang in languages %}
               <li>
-              <a class="dropdown-item" href="/{{ lang.code }}/">
+                <a class="dropdown-item" href="/{{ lang.code }}/">
                   {{ lang.name_local }}
-
-              </a>
+                </a>
               </li>
             {% endfor %}
           </ul>
         </li>
         <li class="nav-item">
-                    <a class="nav-link" href="{% url 'classify_image' %}">{% trans "Classify" %}</a>
+          <a class="nav-link" href="{% url 'classify_image' %}">{% trans "Classify" %}</a>
         </li>
-        <li class="nav-item">
       </ul>
     </div>
   </div>
 </nav>
 
-{% block content %}
+<!-- Кнопка для відкриття/закриття чату -->
+<button id="chat-toggle-button">💬</button>
 
+<div id="chat-container">
+    <div id="chat-header">Chat with us!</div>
+    <div id="messages">
+        <!-- Повідомлення будуть додаватися тут -->
+    </div>
+    <div id="chat-input-container">
+        <input type="text" id="chat-input" placeholder="Type your message here...">
+        <button id="send-button">Send</button>
+    </div>
+</div>
+
+{% block content %}
 {% endblock %}
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const chatToggleButton = document.getElementById("chat-toggle-button");
+        const chatContainer = document.getElementById("chat-container");
+        const chatInput = document.getElementById("chat-input");
+        const sendButton = document.getElementById("send-button");
+        const messages = document.getElementById("messages");
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        // Обробник для відкриття/закриття чату
+        chatToggleButton.onclick = function() {
+            if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
+                chatContainer.style.display = "flex";
+            } else {
+                chatContainer.style.display = "none";
+            }
+        };
+
+        function sendMessage() {
+            const message = chatInput.value;
+            if (message.trim() === '') return;
+
+            const userMessageElement = document.createElement("div");
+            userMessageElement.classList.add("message", "user");
+            userMessageElement.textContent = "You: " + message;
+            messages.appendChild(userMessageElement);
+
+            fetch(`/chat/?message=${encodeURIComponent(message)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const botMessageElement = document.createElement("div");
+                    botMessageElement.classList.add("message", "bot");
+                    botMessageElement.textContent = "Bot: " + data.response;
+                    messages.appendChild(botMessageElement);
+                    messages.scrollTop = messages.scrollHeight;
+                });
+
+            chatInput.value = '';
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        sendButton.onclick = function() {
+            sendMessage();
+        };
+
+        chatInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+    });
+</script>
+
   </body>
 </html>
-
