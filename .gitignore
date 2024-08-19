@@ -164,3 +164,4 @@ cython_debug/
 .keras
 aimagestore/utils/animal_classification_model.keras
 aimagestore/accounts/migrations/0001_initial.py
+client_secrets.json
