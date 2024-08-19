@@ -154,3 +154,7 @@ def change_password_view(request):
 def logout_view(request):
     logout(request)
     return redirect('accounts:login')
+
+
+def profile_view(request):
+    return render(request, "accounts/profile.html")

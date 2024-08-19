@@ -21,8 +21,8 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf.urls.static import static
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
+urlpatterns = i18n_patterns(
+    path('admin/', admin.site.urls),
     path('classify/', include('image_classification.urls')),
     path('chat/', views.chat_with_bot, name='chat_with_bot'),
     # path('', views.home, name='home'),
@@ -31,10 +31,9 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path('auth/', include('accounts.urls')),
-    path('', views.home, name='home')
+    path('accounts/', include('allauth.urls')),
+    path('', views.home, name='main'),
 )
 
-# if 'rosetta' in settings.INSTALLED_APPS:
-#     urlpatterns += [
-#         re_path(r'^rosetta/', include('rosetta.urls'))
-#     ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
