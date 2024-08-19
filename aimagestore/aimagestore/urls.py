@@ -25,13 +25,9 @@ urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('classify/', include('image_classification.urls')),
     path('chat/', views.chat_with_bot, name='chat_with_bot'),
-    # path('', views.home, name='home'),
-    # path('auth/', include('accounts.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns += i18n_patterns(
     path('auth/', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
+    path('home/', views.home, name='home'),
     path('', views.home, name='main'),
 )
 
