@@ -1,0 +1,10 @@
+{% extends 'aimagestore/base.html' %}
+{% load i18n %}
+{% block content %}
+
+
+<h1 class="title profile-name">{{ request.user.username }}</h1>
+<h2 class="sub-text">{{ request.user.email }}</h2>
+
+
+{% endblock %}

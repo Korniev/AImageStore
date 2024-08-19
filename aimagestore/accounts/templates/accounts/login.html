@@ -1,5 +1,6 @@
 {% extends 'aimagestore/base.html' %}
 {% load i18n %}
+{% load socialaccount %}
 {% block content %}
 <form class="form-login" method="post">
 
@@ -35,4 +36,8 @@
     {% endif %}
     <button class="account-button register-button" type="submit">{% trans "Login" %}</button>
 </form>
+
+<h3>Google login</h3>
+<a href="{% provider_login_url 'google' %}?next={{ request.path|slice:':-11' }}">Login with Google</a>
+
 {% endblock %}
