@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('classify/', include('image_classification.urls')),
+    path('chat/', views.chat_with_bot, name='chat_with_bot'),
     # path('', views.home, name='home'),
     # path('auth/', include('accounts.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
