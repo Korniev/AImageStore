@@ -169,14 +169,24 @@
         const sendButton = document.getElementById("send-button");
         const messages = document.getElementById("messages");
 
-        // Обробник для відкриття/закриття чату
+        // open/close window chat
         chatToggleButton.onclick = function() {
             if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
                 chatContainer.style.display = "flex";
+                greetUser();
             } else {
                 chatContainer.style.display = "none";
             }
         };
+
+        function greetUser() {
+            const greetMessage = "Bot: Hello! How can I help you today?";
+            const greetElement = document.createElement("div");
+            greetElement.classList.add("message", "bot");
+            greetElement.textContent = greetMessage;
+            messages.appendChild(greetElement);
+            messages.scrollTop = messages.scrollHeight;
+        }
 
         function sendMessage() {
             const message = chatInput.value;
