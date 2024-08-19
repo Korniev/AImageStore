@@ -53,8 +53,8 @@ INSTALLED_APPS = [
 
 ]
 
-SITE_ID = 2
-SOCIALACCOUNT_PROVIDERS ={
+SITE_ID = 3
+SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
             'profile',
