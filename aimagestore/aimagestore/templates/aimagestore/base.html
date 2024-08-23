@@ -112,12 +112,19 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
         </li>
+          {% if not request.user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'accounts:login' %}">{% trans "Login" %}</a>
         </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:logout' %}">{% trans "Logout" %}</a>
+          </li>
+          {% endif %}
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {% trans "Language" %}

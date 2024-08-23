@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-23 14:50+0300\n"
+"POT-Creation-Date: 2024-08-23 10:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,55 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\accounts\forms.py:15
+#: .\accounts\forms.py:16
 msgid "Username is required."
 msgstr ""
 
-#: .\accounts\forms.py:16
+#: .\accounts\forms.py:17
 msgid "Username must be at least 3 characters long."
 msgstr ""
 
-#: .\accounts\forms.py:24
+#: .\accounts\forms.py:25
 msgid "Email is required."
 msgstr ""
 
-#: .\accounts\forms.py:25
+#: .\accounts\forms.py:26
 msgid "Enter a valid email address."
 msgstr ""
 
-#: .\accounts\forms.py:32
+#: .\accounts\forms.py:33
 msgid "Password is required."
 msgstr ""
 
-#: .\accounts\forms.py:39
+#: .\accounts\forms.py:40
 msgid "Confirm your password."
 msgstr ""
 
-#: .\accounts\forms.py:40 .\accounts\views.py:145
+#: .\accounts\forms.py:41 .\accounts\views.py:145
 msgid "Passwords do not match."
 msgstr ""
 
-#: .\accounts\forms.py:51
+#: .\accounts\forms.py:52
 msgid "This email is already in use!"
 msgstr ""
 
-#: .\accounts\forms.py:57
+#: .\accounts\forms.py:58
 msgid "This field is required."
 msgstr ""
 
-#: .\accounts\forms.py:66
+#: .\accounts\forms.py:67
 msgid "This password is too short. It must contain at least 8 characters!"
 msgstr ""
 
-#: .\accounts\forms.py:68
+#: .\accounts\forms.py:69
 msgid "This password must contain at least one character that is not a digit!"
 msgstr ""
 
-#: .\accounts\forms.py:70
+#: .\accounts\forms.py:71
 msgid "The password is too similar to the username!"
 msgstr ""
 
-#: .\accounts\forms.py:72
+#: .\accounts\forms.py:73
 msgid "The two password fields didn’t match."
 msgstr ""
 
@@ -103,7 +103,7 @@ msgid "Enter your email"
 msgstr ""
 
 #: .\accounts\templates\accounts\email.html:8
-#: .\accounts\templates\accounts\login.html:8
+#: .\accounts\templates\accounts\login.html:9
 #: .\accounts\templates\accounts\register.html:14
 msgid "Email"
 msgstr ""
@@ -144,25 +144,29 @@ msgstr ""
 msgid "Best wishes from the AImageStore team."
 msgstr ""
 
-#: .\accounts\templates\accounts\login.html:15
+#: .\accounts\templates\accounts\login.html:16
 #: .\accounts\templates\accounts\register.html:21
 msgid "Password"
 msgstr ""
 
-#: .\accounts\templates\accounts\login.html:23
+#: .\accounts\templates\accounts\login.html:24
 #: .\accounts\templates\accounts\register.html:46
-#: .\aimagestore\templates\aimagestore\base.html:25
+#: .\aimagestore\templates\aimagestore\base.html:117
 msgid "Register"
 msgstr ""
 
-#: .\accounts\templates\accounts\login.html:24
+#: .\accounts\templates\accounts\login.html:25
 #: .\accounts\templates\accounts\register.html:36
 msgid "Forgot password?"
 msgstr ""
 
-#: .\accounts\templates\accounts\login.html:36
-#: .\aimagestore\templates\aimagestore\base.html:28
+#: .\accounts\templates\accounts\login.html:37
+#: .\aimagestore\templates\aimagestore\base.html:120
 msgid "Login"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:41
+msgid "Login with Google"
 msgstr ""
 
 #: .\accounts\templates\accounts\new-password.html:7
@@ -224,18 +228,30 @@ msgstr ""
 msgid "Your password has been successfully changed."
 msgstr ""
 
-#: .\aimagestore\settings.py:128
+#: .\aimagestore\settings.py:149
 msgid "English"
 msgstr ""
 
-#: .\aimagestore\settings.py:129
+#: .\aimagestore\settings.py:150
 msgid "Ukrainian"
 msgstr ""
 
-#: .\aimagestore\templates\aimagestore\base.html:33
+#: .\aimagestore\templates\aimagestore\base.html:113
+msgid "Home"
+msgstr ""
+
+#: .\aimagestore\templates\aimagestore\base.html:124
+msgid "Logout"
+msgstr ""
+
+#: .\aimagestore\templates\aimagestore\base.html:130
 msgid "Language"
 msgstr ""
 
-#: .\aimagestore\views.py:6
+#: .\aimagestore\templates\aimagestore\base.html:147
+msgid "Classify"
+msgstr ""
+
+#: .\aimagestore\views.py:57
 msgid "Hello!"
 msgstr ""
