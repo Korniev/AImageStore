@@ -7,6 +7,9 @@
     <div class="text-center">
         <img src="{{ MEDIA_URL }}{{ img_url }}?{{ unique_id }}" alt="Uploaded Image" class="img-fluid" style="max-width: 500px;">
         <h3 class="mt-3">{% trans 'Prediction:' %} {{ class_name }} ({{ probability|floatformat:2 }}%)</h3>
+        <a href="https://en.wikipedia.org/wiki/{{ class_name|default_if_none:'Animal' }}" target="_blank" class="btn btn-info mt-3">
+            {% trans 'Learn more about' %} {{ class_name }}
+        </a>
         <a href="{% url 'classify:classify_image' %}" class="btn btn-primary mt-3">{% trans 'Upload new image' %}</a>
     </div>
 </div>
