@@ -67,7 +67,7 @@
           margin-bottom: 10px;
           padding: 5px;
           border-radius: 5px;
-          word-wrap: break-word; /* Забезпечує перенесення довгих слів */
+          word-wrap: break-word;
       }
 
       .message.user {
@@ -80,7 +80,6 @@
           text-align: left;
       }
 
-      /* Кнопка для відкриття/закриття чату */
       #chat-toggle-button {
           position: fixed;
           bottom: 20px;
@@ -150,17 +149,16 @@
     </div>
 </nav>
 
-<!-- Кнопка для відкриття/закриття чату -->
 <button id="chat-toggle-button">💬</button>
 
 <div id="chat-container">
-    <div id="chat-header">Chat with us!</div>
+    <div id="chat-header">{% trans 'Chat with us!' %}</div>
     <div id="messages">
         <!-- Повідомлення будуть додаватися тут -->
     </div>
     <div id="chat-input-container">
-        <input type="text" id="chat-input" placeholder="Type your message here...">
-        <button id="send-button">Send</button>
+        <input type="text" id="chat-input" placeholder="{% trans 'Type your message here...' %}">
+        <button id="send-button">{% trans 'Send' %}</button>
     </div>
 </div>
 
@@ -176,6 +174,13 @@
         const sendButton = document.getElementById("send-button");
         const messages = document.getElementById("messages");
 
+        const currentLanguage = "{{ request.LANGUAGE_CODE }}";
+
+        const greetings = {
+            'en': "Hello! How can I help you today?",
+            'uk': "Привіт! Чим можу допомогти?"
+        };
+
         // open/close window chat
         chatToggleButton.onclick = function() {
             if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
@@ -187,7 +192,7 @@
         };
 
         function greetUser() {
-            const greetMessage = "Bot: Hello! How can I help you today?";
+            const greetMessage = greetings[currentLanguage];
             const greetElement = document.createElement("div");
             greetElement.classList.add("message", "bot");
             greetElement.textContent = greetMessage;
@@ -209,7 +214,7 @@
                 .then(data => {
                     const botMessageElement = document.createElement("div");
                     botMessageElement.classList.add("message", "bot");
-                    botMessageElement.textContent = "Bot: " + data.response;
+                    botMessageElement.textContent = data.response;
                     messages.appendChild(botMessageElement);
                     messages.scrollTop = messages.scrollHeight;
                 });
