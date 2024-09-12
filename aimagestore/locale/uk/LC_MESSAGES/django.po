@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 16:11+0000\n"
+"POT-Creation-Date: 2024-09-12 18:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -302,3 +302,37 @@ msgstr "Я не зрозумів. Будь ласка, перепишіть? "
 #: aimagestore/views.py:65
 msgid "Hello!"
 msgstr "Привіт!"
+
+#: image_classification/forms.py:6
+#, fuzzy
+#| msgid "Upload image"
+msgid "Upload your image"
+msgstr "Завантажити зображення"
+
+#: image_classification/templates/image_classification/result.html:6
+msgid "Classification result"
+msgstr "Отриманий результат:"
+
+#: image_classification/templates/image_classification/result.html:9
+msgid "Prediction:"
+msgstr "Прогноз:"
+
+#: image_classification/templates/image_classification/result.html:10
+msgid "Upload new image"
+msgstr "Завантажити нове зображення?"
+
+#: image_classification/templates/image_classification/upload.html:6
+msgid "Please, upload your image!"
+msgstr "Будь ласка, завантажте зображення!"
+
+#: image_classification/templates/image_classification/upload.html:11
+msgid "Choose file"
+msgstr "Виберіть файл"
+
+#: image_classification/templates/image_classification/upload.html:14
+msgid "No file chosen"
+msgstr "Файл поки що не вибрано"
+
+#: image_classification/templates/image_classification/upload.html:16
+msgid "Upload image"
+msgstr "Завантажити зображення"
