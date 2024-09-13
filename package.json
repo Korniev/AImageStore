@@ -1,0 +1,12 @@
+{
+  "name": "aimagestore",
+  "version": "1.0.0",
+  "description": "AImageStore is a Django-based web application designed to streamline the process of image recognition, sorting, and storage. This project integrates a trained machine learning model to provide efficient image classification and organizes them within user-specific AWS S3 buckets.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
