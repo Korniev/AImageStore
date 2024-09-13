@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 18:25+0000\n"
+"POT-Creation-Date: 2024-09-13 07:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -317,7 +317,11 @@ msgstr "Отриманий результат:"
 msgid "Prediction:"
 msgstr "Прогноз:"
 
-#: image_classification/templates/image_classification/result.html:10
+#: image_classification/templates/image_classification/result.html:11
+msgid "Learn more about"
+msgstr "Дізнатися більше про"
+
+#: image_classification/templates/image_classification/result.html:13
 msgid "Upload new image"
 msgstr "Завантажити нове зображення?"
 
