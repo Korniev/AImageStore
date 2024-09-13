@@ -1,15 +1,29 @@
 {% extends 'aimagestore/base.html' %}
+{% load i18n %}
 
 {% block content %}
 <div class="container mt-5">
-    <h2 class="text-center">Please, upload image!</h2>
+    <h2 class="text-center">{% trans 'Please, upload your image!' %}</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
-            {{ form.image.label_tag }}:
-            {{ form.image }}
+            <label for="file-upload" class="custom-file-upload btn btn-primary">
+                {% trans "Choose file" %}
+            </label>
+            <input id="file-upload" type="file" name="image" style="display:none;">
+            <span id="file-chosen">{% trans "No file chosen" %}</span>
         </div>
-        <button type="submit" class="btn btn-primary">Upload image</button>
+        <button type="submit" class="btn btn-primary">{% trans 'Upload image' %}</button>
     </form>
 </div>
+
+<script>
+    const fileInput = document.getElementById('file-upload');
+    const fileChosen = document.getElementById('file-chosen');
+
+    fileInput.addEventListener('change', function(){
+        fileChosen.textContent = this.files[0].name;
+    })
+</script>
+
 {% endblock %}

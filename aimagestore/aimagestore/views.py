@@ -2,6 +2,7 @@ import os
 import requests
 from django.shortcuts import render
 from django.utils.translation import gettext as _
+from django.utils.translation import get_language
 from django.http import JsonResponse
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -28,6 +29,9 @@ def truncate_to_last_sentence(text):
 
 def chat_with_bot(request):
     user_input = request.GET.get('message', '')
+
+    current_language = get_language()
+
     if user_input:
         payload = {
             "model": "gpt-4o-mini",
@@ -43,12 +47,16 @@ def chat_with_bot(request):
         if response.status_code == 200:
             response_data = response.json()
             response_text = response_data['choices'][0]['message']['content'].strip()
-
             response_text = truncate_to_last_sentence(response_text)
+
+            if current_language == 'uk':
+                response_text = _("Bot: ") + response_text
+            else:
+                response_text = "Bot: " + response_text
         else:
-            response_text = "Sorry, something went wrong with the API request."
+            response_text = _("Sorry, something went wrong with the API request.")
     else:
-        response_text = "I didn't get that. Can you please rephrase?"
+        response_text = _("I didn't get that. Can you please rephrase?")
 
     return JsonResponse({'response': response_text})
 
