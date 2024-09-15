@@ -1,6 +1,14 @@
 {% extends 'aimagestore/base.html' %}
 {% load i18n %}
 {% load socialaccount %}
+{% load static %}
+
+{% block body_class %}login-page{% endblock %}
+
+{% block custom_styles %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <form class="form-login" method="post">
 
@@ -34,10 +42,12 @@
     <p>{{ message }}</p>
     {% endfor %}
     {% endif %}
-    <button class="account-button register-button" type="submit">{% trans "Login" %}</button>
+    <button class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300" type="submit">{% trans "Login" %}</button>
 </form>
 
 <h3>Google login</h3>
-<a href="{% provider_login_url 'google' %}?next={{ request.path|slice:':-11' }}">{% trans "Login with Google" %}</a>
+<a href="{% provider_login_url 'google' %}?next={{ request.path|slice:':-11' }}"
+    class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300 inline-block mt-3">
+    {% trans "Login with Google" %}</a>
 
 {% endblock %}

@@ -50,9 +50,9 @@ def chat_with_bot(request):
             response_text = truncate_to_last_sentence(response_text)
 
             if current_language == 'uk':
-                response_text = _("Bot: ") + response_text
+                response_text = _("Assistant: ") + response_text
             else:
-                response_text = "Bot: " + response_text
+                response_text = "Assistant: " + response_text
         else:
             response_text = _("Sorry, something went wrong with the API request.")
     else:

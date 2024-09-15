@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-13 07:27+0000\n"
+"POT-Creation-Date: 2024-09-15 10:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,13 +117,13 @@ msgid "Enter your email"
 msgstr "Введіть Вашу пошту"
 
 #: accounts/templates/accounts/email.html:8
-#: accounts/templates/accounts/login.html:9
+#: accounts/templates/accounts/login.html:22
 #: accounts/templates/accounts/register.html:14
 msgid "Email"
 msgstr "Електронна пошта"
 
 #: accounts/templates/accounts/email.html:17
-#: aimagestore/templates/aimagestore/base.html:161
+#: aimagestore/templates/aimagestore/base.html:123
 msgid "Send"
 msgstr "Відправити"
 
@@ -163,28 +163,28 @@ msgstr "Якщо Ви не надсилали запит, то можете пр
 msgid "Best wishes from the AImageStore team."
 msgstr "З найкращими побажаннями команда AImageStore."
 
-#: accounts/templates/accounts/login.html:16
+#: accounts/templates/accounts/login.html:29
 #: accounts/templates/accounts/register.html:21
 msgid "Password"
 msgstr "Пароль"
 
-#: accounts/templates/accounts/login.html:24
+#: accounts/templates/accounts/login.html:37
 #: accounts/templates/accounts/register.html:46
-#: aimagestore/templates/aimagestore/base.html:116
+#: aimagestore/templates/aimagestore/base.html:43
 msgid "Register"
 msgstr "Зареєструватися"
 
-#: accounts/templates/accounts/login.html:25
+#: accounts/templates/accounts/login.html:38
 #: accounts/templates/accounts/register.html:36
 msgid "Forgot password?"
 msgstr "Забули пароль?"
 
-#: accounts/templates/accounts/login.html:37
-#: aimagestore/templates/aimagestore/base.html:119
+#: accounts/templates/accounts/login.html:50
+#: aimagestore/templates/aimagestore/base.html:49
 msgid "Login"
 msgstr "Увійти"
 
-#: accounts/templates/accounts/login.html:41
+#: accounts/templates/accounts/login.html:54
 msgid "Login with Google"
 msgstr "Увійти за допомогою Google"
 
@@ -255,37 +255,45 @@ msgstr "Новий код було відправлено."
 msgid "Your password has been successfully changed."
 msgstr "Ваш пароль успішно змінено."
 
-#: aimagestore/settings.py:149
+#: aimagestore/settings.py:150
 msgid "English"
 msgstr "Англійська"
 
-#: aimagestore/settings.py:150
+#: aimagestore/settings.py:151
 msgid "Ukrainian"
 msgstr "Українська"
 
-#: aimagestore/templates/aimagestore/base.html:112
+#: aimagestore/templates/aimagestore/base.html:36
 msgid "Home"
 msgstr "Дім"
 
-#: aimagestore/templates/aimagestore/base.html:123
+#: aimagestore/templates/aimagestore/base.html:56
 msgid "Logout"
 msgstr "Вийти"
 
-#: aimagestore/templates/aimagestore/base.html:129
-msgid "Language"
-msgstr "Мова"
-
-#: aimagestore/templates/aimagestore/base.html:146
+#: aimagestore/templates/aimagestore/base.html:63
 msgid "Classify"
 msgstr "Класифікувати зображення"
 
-#: aimagestore/templates/aimagestore/base.html:155
+#: aimagestore/templates/aimagestore/base.html:77
+msgid "Language"
+msgstr "Мова"
+
+#: aimagestore/templates/aimagestore/base.html:114
 msgid "Chat with us!"
 msgstr "Чат з нами!"
 
-#: aimagestore/templates/aimagestore/base.html:160
+#: aimagestore/templates/aimagestore/base.html:121
 msgid "Type your message here..."
 msgstr "Введіть ваше повідомлення тут..."
+
+#: aimagestore/templates/aimagestore/home.html:19
+msgid "Discover more about"
+msgstr "Дізнайся більше про"
+
+#: aimagestore/templates/aimagestore/home.html:20
+msgid "animals with AI!"
+msgstr "тварин разом з AI!"
 
 #: aimagestore/views.py:53
 msgid "Bot: "
@@ -309,34 +317,34 @@ msgstr "Привіт!"
 msgid "Upload your image"
 msgstr "Завантажити зображення"
 
-#: image_classification/templates/image_classification/result.html:6
+#: image_classification/templates/image_classification/result.html:18
 msgid "Classification result"
 msgstr "Отриманий результат:"
 
-#: image_classification/templates/image_classification/result.html:9
+#: image_classification/templates/image_classification/result.html:21
 msgid "Prediction:"
 msgstr "Прогноз:"
 
-#: image_classification/templates/image_classification/result.html:11
+#: image_classification/templates/image_classification/result.html:23
 msgid "Learn more about"
 msgstr "Дізнатися більше про"
 
-#: image_classification/templates/image_classification/result.html:13
+#: image_classification/templates/image_classification/result.html:25
 msgid "Upload new image"
 msgstr "Завантажити нове зображення?"
 
-#: image_classification/templates/image_classification/upload.html:6
+#: image_classification/templates/image_classification/upload.html:18
 msgid "Please, upload your image!"
 msgstr "Будь ласка, завантажте зображення!"
 
-#: image_classification/templates/image_classification/upload.html:11
+#: image_classification/templates/image_classification/upload.html:23
 msgid "Choose file"
 msgstr "Виберіть файл"
 
-#: image_classification/templates/image_classification/upload.html:14
+#: image_classification/templates/image_classification/upload.html:26
 msgid "No file chosen"
 msgstr "Файл поки що не вибрано"
 
-#: image_classification/templates/image_classification/upload.html:16
+#: image_classification/templates/image_classification/upload.html:28
 msgid "Upload image"
 msgstr "Завантажити зображення"

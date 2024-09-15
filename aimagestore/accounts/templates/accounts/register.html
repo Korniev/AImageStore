@@ -1,5 +1,13 @@
 {% extends 'aimagestore/base.html' %}
 {% load i18n %}
+{% load static %}
+
+{% block body_class %}register-page{% endblock %}
+
+{% block custom_styles %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <form class="form-login" method="post">
     {% csrf_token %}
@@ -43,7 +51,7 @@
     <p>{{ message }}</p>L
     {% endfor %}
     {% endif %}
-    <button class="account-button register-button" type="submit">{% trans "Register" %}</button>
+    <button class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300" type="submit">{% trans "Register" %}</button>
 </form>
 
 {% endblock %}

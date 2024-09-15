@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,167 +7,147 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Tailwind CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'img_background/circ_logo.png' %}" type="image/png">
+
+    <!-- Custom Styles for specific pages -->
+    {% block custom_styles %}{% endblock %}
+
     <title>AImageStore</title>
+</head>
+<body class="h-screen {% block body_class %}{% endblock %}">
 
-    <style>
-      #chat-container {
-          position: fixed;
-          bottom: 80px;
-          right: 20px;
-          width: 400px;
-          max-height: 70%;
-          background: white;
-          border-radius: 10px;
-          box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-          overflow: hidden;
-          display: none;
-          flex-direction: column;
-      }
+<!-- Tailwind NavBar -->
+<nav class="bg-transparent w-full p-4 px-6">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Left Side: Logo -->
+        <a href="/" class="flex items-center">
+            <img src="{% static 'img_background/circ_logo.png' %}" alt="Logo"
+                 class="h-12 w-auto max-h-20 max-w-20 object-contain mr-3">
+            <span class="text-white text-lg font-semibold">AImageStore</span>
+        </a>
 
-      #chat-header {
-          background-color: #007bff;
-          color: white;
-          padding: 10px;
-          text-align: center;
-          cursor: pointer;
-      }
-
-      #messages {
-          padding: 10px;
-          overflow-y: auto;
-          flex: 1;
-      }
-
-      #chat-input-container {
-          display: flex;
-          padding: 10px;
-          background-color: #f1f1f1;
-      }
-
-      #chat-input {
-          flex: 1;
-          padding: 5px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-      }
-
-      #send-button {
-          padding: 5px 10px;
-          margin-left: 5px;
-          background-color: #007bff;
-          color: white;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-      }
-
-      .message {
-          margin-bottom: 10px;
-          padding: 5px;
-          border-radius: 5px;
-          word-wrap: break-word;
-      }
-
-      .message.user {
-          background-color: #e1ffc7;
-          text-align: right;
-      }
-
-      .message.bot {
-          background-color: #f1f1f1;
-          text-align: left;
-      }
-
-      #chat-toggle-button {
-          position: fixed;
-          bottom: 20px;
-          right: 20px;
-          background-color: #007bff;
-          color: white;
-          border: none;
-          border-radius: 50%;
-          width: 50px;
-          height: 50px;
-          font-size: 24px;
-          text-align: center;
-          line-height: 50px;
-          cursor: pointer;
-          z-index: 1000;
-      }
-    </style>
-  </head>
-  <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
-        </li>
-          {% if not request.user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:login' %}">{% trans "Login" %}</a>
-        </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:logout' %}">{% trans "Logout" %}</a>
-          </li>
-          {% endif %}
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {% trans "Language" %}
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {% get_current_language as LANGUAGE_CODE %}
-            {% get_available_languages as LANGUAGES %}
-            {% get_language_info_list for LANGUAGES as languages %}
-
-            {% for lang in languages %}
-              <li>
-                <a class="dropdown-item" href="/{{ lang.code }}/">
-                  {{ lang.name_local }}
+        <!-- Middle: Nav Links -->
+        <ul class="flex space-x-6">
+            <li>
+                <a href="{% url 'home' %}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Home" %}
                 </a>
-              </li>
-            {% endfor %}
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'classify:classify_image' %}">{% trans "Classify" %}</a>
-        </li>
-      </ul>
+            </li>
+            {% if not request.user.is_authenticated %}
+            <li>
+                <a href="{% url 'accounts:register' %}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Register" %}
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'accounts:login' %}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Login" %}
+                </a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'accounts:logout' %}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Logout" %}
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="{% url 'classify:classify_image' %}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Classify" %}
+                </a>
+            </li>
+        </ul>
+
+        <!-- Right Side: Language Selector -->
+        <div class="relative inline-block text-left">
+            <button id="languageButton"
+                    class="inline-flex justify-center w-full rounded-md border btn-custom shadow-sm px-6 py-2 text-white hover:border-white border-2 focus:outline-none">
+                {% if LANGUAGE_CODE == 'en' %}
+                EN
+                {% elif LANGUAGE_CODE == 'uk' %}
+                UA
+                {% else %}
+                {% trans "Language" %}
+                {% endif %}
+                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                     fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clip-rule="evenodd"/>
+                </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="languageMenu"
+                 class="origin-top absolute left-1/2 transform -translate-x-1/2 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
+                <div class="py-1">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for lang in languages %}
+                    <a href="/{{ lang.code }}/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-100">
+                        {{ lang.name_local }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
 
-<button id="chat-toggle-button">💬</button>
 
-<div id="chat-container">
-    <div id="chat-header">{% trans 'Chat with us!' %}</div>
-    <div id="messages">
+<button id="chat-toggle-button"
+        class="fixed bottom-5 right-5 bg-green-800 text-white rounded-full w-12 h-12 text-2xl flex items-center justify-center z-50">
+    💬
+</button>
+
+<div id="chat-container"
+     class="fixed bottom-20 right-5 w-96 max-h-[70%] bg-white bg-opacity-40 rounded-lg shadow-lg overflow-hidden hidden flex flex-col">
+    <div id="chat-header" class="bg-green-800 text-white p-4 text-center cursor-pointer">
+        {% trans 'Chat with us!' %}
+    </div>
+    <div id="messages" class="p-4 overflow-y-auto flex-1 space-y-3">
         <!-- Повідомлення будуть додаватися тут -->
     </div>
-    <div id="chat-input-container">
-        <input type="text" id="chat-input" placeholder="{% trans 'Type your message here...' %}">
-        <button id="send-button">{% trans 'Send' %}</button>
+    <div id="chat-input-container" class="flex p-4 bg-gray-200">
+        <input id="chat-input" class="flex-1 p-2 border border-gray-300 rounded-md"
+               placeholder="{% trans 'Type your message here...' %}">
+        <button id="send-button" class="p-2 ml-2 bg-green-800 text-white rounded-md">
+            {% trans 'Send' %}
+        </button>
     </div>
 </div>
 
 {% block content %}
 {% endblock %}
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
 <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const languageButton = document.getElementById('languageButton');
+        const languageMenu = document.getElementById('languageMenu');
+
+        languageButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+            languageMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!languageMenu.contains(e.target)) {
+                languageMenu.classList.remove('show');
+            }
+        });
+    });
+
+    // open/close window chat
     document.addEventListener("DOMContentLoaded", function() {
         const chatToggleButton = document.getElementById("chat-toggle-button");
         const chatContainer = document.getElementById("chat-container");
@@ -177,8 +158,8 @@
         const currentLanguage = "{{ request.LANGUAGE_CODE }}";
 
         const greetings = {
-            'en': "Hello! How can I help you today?",
-            'uk': "Привіт! Чим можу допомогти?"
+            'en': "Assistant: Hello! How can I help you today?",
+            'uk': "Assistant: Привіт! Чим можу допомогти?"
         };
 
         // open/close window chat
@@ -192,11 +173,23 @@
         };
 
         function greetUser() {
-            const greetMessage = greetings[currentLanguage];
-            const greetElement = document.createElement("div");
-            greetElement.classList.add("message", "bot");
-            greetElement.textContent = greetMessage;
-            messages.appendChild(greetElement);
+                const greetMessage = greetings[currentLanguage];
+                addBotMessage(greetMessage);
+        }
+
+        function addBotMessage(text) {
+            const botMessageElement = document.createElement("div");
+            botMessageElement.classList.add("message", "bot", "bg-gray-100", "p-3", "rounded-md", "mb-3", "text-left", "max-w-xs");
+            botMessageElement.textContent = `${text}`;
+            messages.appendChild(botMessageElement);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const userMessageElement = document.createElement("div");
+            userMessageElement.classList.add("message", "user", "bg-orange-50", "p-3", "rounded-md", "mb-3", "text-left", "max-w-xs");
+            userMessageElement.textContent = `You: ${text}`;
+            messages.appendChild(userMessageElement);
             messages.scrollTop = messages.scrollHeight;
         }
 
@@ -204,19 +197,12 @@
             const message = chatInput.value;
             if (message.trim() === '') return;
 
-            const userMessageElement = document.createElement("div");
-            userMessageElement.classList.add("message", "user");
-            userMessageElement.textContent = "You: " + message;
-            messages.appendChild(userMessageElement);
+            addUserMessage(message);
 
             fetch(`/chat/?message=${encodeURIComponent(message)}`)
                 .then(response => response.json())
                 .then(data => {
-                    const botMessageElement = document.createElement("div");
-                    botMessageElement.classList.add("message", "bot");
-                    botMessageElement.textContent = data.response;
-                    messages.appendChild(botMessageElement);
-                    messages.scrollTop = messages.scrollHeight;
+                    addBotMessage(data.response);
                 });
 
             chatInput.value = '';
@@ -236,8 +222,5 @@
     });
 </script>
 
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"-->
-<!--        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"-->
-<!--        crossorigin="anonymous"></script>-->
 </body>
 </html>
