@@ -14,7 +14,7 @@
     <form class="form-login max-w-md bg-white/20 shadow-md rounded-lg p-6" method="post">
         {% csrf_token %}
 
-        <h2 class="text-xl text-white font-extrabold text-center mb-6">{% trans "Log In to Your Account" %}</h2>
+        <h2 class="text-2xl text-white font-extrabold text-center mb-6">{% trans "Log In to Your Account" %}</h2>
 
         <div class="form-area mb-6">
             <label for="email" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -39,8 +39,8 @@
         </div>
 
         <div class="other-options mb-6 flex justify-between">
-            <a class="login__link text-xs text-gray-600 hover:underline" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
-            <a class="login__link text-xs text-gray-600 hover:underline" href="{% url 'accounts:email' %}">{% trans "Forgot password?" %}</a>
+            <a class="login__link text-xs text-gray-800 hover:underline" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
+            <a class="login__link text-xs text-gray-800 hover:underline" href="{% url 'accounts:email' %}">{% trans "Forgot password?" %}</a>
         </div>
 
         {% if form.errors and form.non_field_errors %}
