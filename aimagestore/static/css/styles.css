@@ -90,3 +90,23 @@ body.code-verification-page {
     background-position: center;
     height: 100vh;
 }
+
+
+body.new-password-page {
+    background-image: url('/static/img_background/new_password_background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Styles for errors messages */
+ul.errorlist {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.errorlist li {
+    color: #ef4444;
+    font-size: 0.875rem;
+    font-style: italic;
+}
