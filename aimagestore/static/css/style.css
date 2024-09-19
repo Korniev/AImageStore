@@ -1685,6 +1685,24 @@ body.result-page {
   height: 100vh;
 }
 
+/* Styles for the reset_password.html background */
+
+body.password-reset-page {
+  background-image: url('/static/img_background/reset_password_background.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+/* Styles for the code-verification.html background */
+
+body.code-verification-page {
+  background-image: url('/static/img_background/code_verification_background.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
 .hover\:border-white:hover {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));

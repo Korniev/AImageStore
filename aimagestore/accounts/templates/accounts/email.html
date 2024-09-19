@@ -1,19 +1,41 @@
 {% extends 'aimagestore/base.html' %}
 {% load i18n %}
-{% block content %}
-<form class="form-login" method="post">
-    {% csrf_token %}
-    <p class="title-for-account">{% trans "Enter your email" %}</p>
-    <div class="form-area">
-        <p class="data-name">{% trans "Email" %}</p>
-        <input class="data-input" type="email" name="email" id="email" placeholder="Пошта">
+{% load static %}
+{% block body_class %}password-reset-page{% endblock %}
 
-    </div>
-    {% if messages %}
-    {% for message in messages %}
-    <p>{{ message }}</p>
-    {% endfor %}
-    {% endif %}
-    <button class="account-button" type="submit">{% trans "Send" %}</button>
-</form>
+{% block custom_styles %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="absolute top-[8rem] left-[7rem] transform w-full">
+    <form class="form-login max-w-md bg-white/20 shadow-md rounded-lg p-6" method="post">
+        {% csrf_token %}
+
+        <h2 class="text-2xl text-white font-extrabold text-center mb-6">{% trans "Reset Your Password" %}</h2>
+
+        <div class="form-area mb-6">
+            <label for="email" class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2">
+                {% trans "Email" %}
+            </label>
+            <input type="email" name="email" id="email"
+                   class="appearance-none block w-full bg-transparent border-b border-white-900 text-gray-700 focus:outline-none focus:border-white py-2 px-4 leading-tight"
+                   placeholder="Пошта">
+            {% if form.errors.email %}
+            <p class="error-message text-red-500 text-xs italic">{{ form.errors.email }}</p>
+            {% endif %}
+        </div>
+
+        {% if messages %}
+        {% for message in messages %}
+        <p class="text-green-500 text-xs italic">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+
+        <button class="text-white btn-custom w-full px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300"
+                type="submit">
+            {% trans "Send" %}
+        </button>
+    </form>
+</div>
 {% endblock %}
