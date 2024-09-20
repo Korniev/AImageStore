@@ -1772,6 +1772,8 @@ body.new-password-page {
   height: 100vh;
 }
 
+/* Styles for the google-login.html background */
+
 body.google-login-page {
   background-image: url('/static/img_background/dog_4.jpg');
   background-size: cover;
