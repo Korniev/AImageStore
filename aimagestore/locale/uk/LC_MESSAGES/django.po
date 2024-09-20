@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-15 10:49+0000\n"
+"POT-Creation-Date: 2024-09-20 11:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: accounts/forms.py:16
-#, fuzzy
-#| msgid "Username is required!"
 msgid "Username is required."
 msgstr "Ім'я користувача є обов'язковим!"
 
@@ -28,32 +26,22 @@ msgid "Username must be at least 3 characters long."
 msgstr "Ім'я користувача повинно містити щонайменше 3 символи."
 
 #: accounts/forms.py:25
-#, fuzzy
-#| msgid "Email address is required!"
 msgid "Email is required."
 msgstr "Адреса електронної пошти є обов'язковою!"
 
 #: accounts/forms.py:26
-#, fuzzy
-#| msgid "Please enter a valid email address!"
 msgid "Enter a valid email address."
 msgstr "Будь ласка, введіть дійсну адресу електронної пошти!"
 
 #: accounts/forms.py:33
-#, fuzzy
-#| msgid "Username is required!"
 msgid "Password is required."
 msgstr "Це поле є обов'язковим!"
 
 #: accounts/forms.py:40
-#, fuzzy
-#| msgid "Forgot password?"
 msgid "Confirm your password."
 msgstr "Забули пароль?"
 
 #: accounts/forms.py:41 accounts/views.py:145
-#, fuzzy
-#| msgid "The two password fields didn’t match."
 msgid "Passwords do not match."
 msgstr "Паролі не збігаються."
 
@@ -62,15 +50,12 @@ msgid "This email is already in use!"
 msgstr "Ця електронна адреса вже використовується!"
 
 #: accounts/forms.py:58
-#, fuzzy
-#| msgid "Username is required!"
 msgid "This field is required."
 msgstr "Це поле є обов'язковим!"
 
 #: accounts/forms.py:67
 msgid "This password is too short. It must contain at least 8 characters!"
-msgstr ""
-"Цей пароль занадто короткий. Він повинен містити щонайменше 8 символів!"
+msgstr "Цей пароль занадто короткий. Він повинен містити щонайменше 8 символів!"
 
 #: accounts/forms.py:69
 msgid "This password must contain at least one character that is not a digit!"
@@ -96,34 +81,34 @@ msgstr "Адреса електронної пошти є обов'язково�
 msgid "Username is required!"
 msgstr "Ім'я користувача є обов'язковим!"
 
-#: accounts/templates/accounts/code-verification.html:6
-msgid "Enter code to verify"
+#: accounts/templates/accounts/code-verification.html:15
+msgid "Enter Code to Verify"
 msgstr "Введіть код для підтвердження"
 
-#: accounts/templates/accounts/code-verification.html:8
+#: accounts/templates/accounts/code-verification.html:19
 msgid "Code"
 msgstr "Код"
 
-#: accounts/templates/accounts/code-verification.html:18
-msgid "Confirm"
-msgstr "Підтвердити"
-
-#: accounts/templates/accounts/code-verification.html:23
+#: accounts/templates/accounts/code-verification.html:32
 msgid "Resend code"
 msgstr "Відправити код повторно"
 
-#: accounts/templates/accounts/email.html:6
-msgid "Enter your email"
-msgstr "Введіть Вашу пошту"
+#: accounts/templates/accounts/code-verification.html:37
+msgid "Confirm"
+msgstr "Підтвердити"
 
-#: accounts/templates/accounts/email.html:8
-#: accounts/templates/accounts/login.html:22
-#: accounts/templates/accounts/register.html:14
+#: accounts/templates/accounts/email.html:15
+msgid "Reset Your Password"
+msgstr "Скинути пароль"
+
+#: accounts/templates/accounts/email.html:19
+#: accounts/templates/accounts/login.html:21
+#: accounts/templates/accounts/register.html:31
 msgid "Email"
 msgstr "Електронна пошта"
 
-#: accounts/templates/accounts/email.html:17
-#: aimagestore/templates/aimagestore/base.html:123
+#: accounts/templates/accounts/email.html:37
+#: aimagestore/templates/aimagestore/base.html:137
 msgid "Send"
 msgstr "Відправити"
 
@@ -132,18 +117,14 @@ msgid "Mail from AImageStore"
 msgstr "Лист від AImageStore"
 
 #: accounts/templates/accounts/email_template.html:245
-#, fuzzy
-#| msgid "Enter your email"
 msgid "Please confirm your email"
-msgstr "Введіть Вашу пошту"
+msgstr "Будь ласка, введіть Вашу пошту"
 
 #: accounts/templates/accounts/email_template.html:247
 msgid "AImageStore email confirmation"
 msgstr "Підтвердження пошти AImageStore"
 
 #: accounts/templates/accounts/email_template.html:253
-#, fuzzy
-#| msgid "Hello!"
 msgid "Hello "
 msgstr "Привіт "
 
@@ -163,60 +144,66 @@ msgstr "Якщо Ви не надсилали запит, то можете пр
 msgid "Best wishes from the AImageStore team."
 msgstr "З найкращими побажаннями команда AImageStore."
 
-#: accounts/templates/accounts/login.html:29
-#: accounts/templates/accounts/register.html:21
+#: accounts/templates/accounts/login.html:17
+msgid "Log In to Your Account"
+msgstr "Зайдіть у свій обліковий запис"
+
+#: accounts/templates/accounts/login.html:32
+#: accounts/templates/accounts/register.html:42
 msgid "Password"
 msgstr "Пароль"
 
-#: accounts/templates/accounts/login.html:37
-#: accounts/templates/accounts/register.html:46
+#: accounts/templates/accounts/login.html:42
+#: accounts/templates/accounts/register.html:79
 #: aimagestore/templates/aimagestore/base.html:43
 msgid "Register"
 msgstr "Зареєструватися"
 
-#: accounts/templates/accounts/login.html:38
-#: accounts/templates/accounts/register.html:36
+#: accounts/templates/accounts/login.html:43
+#: accounts/templates/accounts/register.html:64
 msgid "Forgot password?"
 msgstr "Забули пароль?"
 
-#: accounts/templates/accounts/login.html:50
+#: accounts/templates/accounts/login.html:58
 #: aimagestore/templates/aimagestore/base.html:49
 msgid "Login"
 msgstr "Увійти"
 
-#: accounts/templates/accounts/login.html:54
+#: accounts/templates/accounts/login.html:63
 msgid "Login with Google"
 msgstr "Увійти за допомогою Google"
 
-#: accounts/templates/accounts/new-password.html:7
-#, fuzzy
-#| msgid "Repeat password"
-msgid "New password"
-msgstr "Повторіть пароль"
-
-#: accounts/templates/accounts/new-password.html:14
-#, fuzzy
-#| msgid "Repeat password"
-msgid "Repeat new password"
+#: accounts/templates/accounts/new-password.html:16
+msgid "Change Your Password"
 msgstr "Повторіть пароль"
 
 #: accounts/templates/accounts/new-password.html:20
-#, fuzzy
-#| msgid "Repeat password"
-msgid "Change password"
+msgid "New password"
 msgstr "Повторіть пароль"
 
-#: accounts/templates/accounts/register.html:7
+#: accounts/templates/accounts/new-password.html:31
+msgid "Repeat new password"
+msgstr "Повторіть пароль"
+
+#: accounts/templates/accounts/new-password.html:42
+msgid "Change password"
+msgstr "Змінити пароль"
+
+#: accounts/templates/accounts/register.html:16
+msgid "Register Your Account"
+msgstr "Зареєструйте свій обліковий запис"
+
+#: accounts/templates/accounts/register.html:20
 msgid "Username"
 msgstr "Ім'я користувача"
 
-#: accounts/templates/accounts/register.html:28
-msgid "Repeat password"
+#: accounts/templates/accounts/register.html:53
+msgid "Repeat Password"
 msgstr "Повторіть пароль"
 
-#: accounts/templates/accounts/register.html:35
-msgid "Account already exist"
-msgstr "Обліковий запис вже існує"
+#: accounts/templates/accounts/register.html:63
+msgid "Already have an account?"
+msgstr "У Вас вже є обліковий запис?"
 
 #: accounts/views.py:19 accounts/views.py:47
 #, python-brace-format
@@ -224,10 +211,8 @@ msgid "You are already logged in as {username}."
 msgstr "Ви вже авторизовані як {username}."
 
 #: accounts/views.py:34
-#, fuzzy
-#| msgid "Enter your email"
 msgid "Please verify your email."
-msgstr "Введіть Вашу пошту"
+msgstr "Будь ласка, підвердіть свою пошту."
 
 #: accounts/views.py:88
 #, python-brace-format
@@ -255,35 +240,40 @@ msgstr "Новий код було відправлено."
 msgid "Your password has been successfully changed."
 msgstr "Ваш пароль успішно змінено."
 
-#: aimagestore/settings.py:150
+#: aimagestore/settings.py:152
 msgid "English"
 msgstr "Англійська"
 
-#: aimagestore/settings.py:151
+#: aimagestore/settings.py:153
 msgid "Ukrainian"
 msgstr "Українська"
 
 #: aimagestore/templates/aimagestore/base.html:36
 msgid "Home"
-msgstr "Дім"
+msgstr "Головна"
 
 #: aimagestore/templates/aimagestore/base.html:56
 msgid "Logout"
 msgstr "Вийти"
 
-#: aimagestore/templates/aimagestore/base.html:63
+#: aimagestore/templates/aimagestore/base.html:64
+#: aimagestore/templates/aimagestore/base.html:70
 msgid "Classify"
 msgstr "Класифікувати зображення"
 
-#: aimagestore/templates/aimagestore/base.html:77
+#: aimagestore/templates/aimagestore/base.html:74
+msgid "Please log in to use this feature :)"
+msgstr "Будь ласка, увійдіть у свій обліковий запис :)"
+
+#: aimagestore/templates/aimagestore/base.html:91
 msgid "Language"
 msgstr "Мова"
 
-#: aimagestore/templates/aimagestore/base.html:114
+#: aimagestore/templates/aimagestore/base.html:128
 msgid "Chat with us!"
 msgstr "Чат з нами!"
 
-#: aimagestore/templates/aimagestore/base.html:121
+#: aimagestore/templates/aimagestore/base.html:135
 msgid "Type your message here..."
 msgstr "Введіть ваше повідомлення тут..."
 
@@ -295,9 +285,21 @@ msgstr "Дізнайся більше про"
 msgid "animals with AI!"
 msgstr "тварин разом з AI!"
 
+#: aimagestore/templates/socialaccount/login.html:15
+msgid "Sign In Via Google"
+msgstr "Хочете увійти через Google?"
+
+#: aimagestore/templates/socialaccount/login.html:17
+msgid "You are about to sign in using a third-party account from Google."
+msgstr "Нажимаючи на кнопку нижче, Ви бажаєте увійти за допомогою облікового запису з Google."
+
+#: aimagestore/templates/socialaccount/login.html:25
+msgid "Continue with Google"
+msgstr "Вперед з Google!"
+
 #: aimagestore/views.py:53
-msgid "Bot: "
-msgstr "Відправити"
+msgid "Assistant: "
+msgstr "Асистент: "
 
 #: aimagestore/views.py:57
 msgid "Sorry, something went wrong with the API request."
@@ -305,46 +307,53 @@ msgstr "Вибачте, виникла помилка під час запиту
 
 #: aimagestore/views.py:59
 msgid "I didn't get that. Can you please rephrase?"
-msgstr "Я не зрозумів. Будь ласка, перепишіть? "
+msgstr "Я не зрозумів. Будь ласка, перефразуйте ваше запитання? "
 
 #: aimagestore/views.py:65
 msgid "Hello!"
 msgstr "Привіт!"
 
 #: image_classification/forms.py:6
-#, fuzzy
-#| msgid "Upload image"
 msgid "Upload your image"
 msgstr "Завантажити зображення"
 
-#: image_classification/templates/image_classification/result.html:18
+#: image_classification/templates/image_classification/result.html:14
 msgid "Classification result"
 msgstr "Отриманий результат:"
 
-#: image_classification/templates/image_classification/result.html:21
+#: image_classification/templates/image_classification/result.html:20
 msgid "Prediction:"
 msgstr "Прогноз:"
 
-#: image_classification/templates/image_classification/result.html:23
+#: image_classification/templates/image_classification/result.html:24
 msgid "Learn more about"
 msgstr "Дізнатися більше про"
 
-#: image_classification/templates/image_classification/result.html:25
+#: image_classification/templates/image_classification/result.html:28
 msgid "Upload new image"
 msgstr "Завантажити нове зображення?"
 
-#: image_classification/templates/image_classification/upload.html:18
+#: image_classification/templates/image_classification/upload.html:13
 msgid "Please, upload your image!"
 msgstr "Будь ласка, завантажте зображення!"
 
-#: image_classification/templates/image_classification/upload.html:23
+#: image_classification/templates/image_classification/upload.html:19
 msgid "Choose file"
 msgstr "Виберіть файл"
 
-#: image_classification/templates/image_classification/upload.html:26
+#: image_classification/templates/image_classification/upload.html:22
 msgid "No file chosen"
 msgstr "Файл поки що не вибрано"
 
-#: image_classification/templates/image_classification/upload.html:28
+#: image_classification/templates/image_classification/upload.html:25
 msgid "Upload image"
 msgstr "Завантажити зображення"
+
+#~ msgid "Enter your email"
+#~ msgstr "Введіть Вашу пошту"
+
+#~ msgid "Account already exist"
+#~ msgstr "Обліковий запис вже існує"
+
+#~ msgid "Bot: "
+#~ msgstr "Бот: "

@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.exceptions import ValidationError
 from django.forms import PasswordInput, CharField, EmailField, TextInput, EmailInput, Form
 from .models import User
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 
 class RegisterForm(UserCreationForm):
