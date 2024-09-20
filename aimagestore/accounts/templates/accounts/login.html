@@ -1,43 +1,67 @@
 {% extends 'aimagestore/base.html' %}
 {% load i18n %}
 {% load socialaccount %}
+{% load static %}
+
+{% block body_class %}login-page{% endblock %}
+
+{% block custom_styles %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-<form class="form-login" method="post">
+<div class="absolute top-[8rem] left-[7rem] transform w-full">
+    <form class="form-login max-w-md bg-white/20 shadow-md rounded-lg p-6" method="post">
+        {% csrf_token %}
 
-    {% csrf_token %}
-    <div class="form-area">
-        <p class="data-name">{% trans "Email" %}</p>
-        {{ form.email }}
-        {% if form.errors.email %}
-        <p class="error-message">{{ form.errors.email }}</p>
+        <h2 class="text-2xl text-white font-extrabold text-center mb-6">{% trans "Log In to Your Account" %}</h2>
+
+        <div class="form-area mb-6">
+            <label for="email" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                {% trans "Email" %}
+            </label>
+            <input type="email" name="email"
+                   class="appearance-none block w-full bg-transparent border-b border-white-900 text-gray-700 focus:outline-none focus:border-white py-2 px-4 leading-tight">
+            {% if form.errors.email %}
+            <p class="error-message text-red-500 text-xs italic">{{ form.errors.email }}</p>
+            {% endif %}
+        </div>
+
+        <div class="form-area mb-6">
+            <label for="password" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                {% trans "Password" %}
+            </label>
+            <input type="password" name="password"
+                   class="appearance-none block w-full bg-transparent border-b border-white-900 text-gray-700 focus:outline-none focus:border-white py-2 px-4 leading-tight">
+            {% if form.errors.password %}
+            <p class="error-message text-red-500 text-xs italic">{{ form.errors.password }}</p>
+            {% endif %}
+        </div>
+
+        <div class="other-options mb-6 flex justify-between">
+            <a class="login__link text-xs text-gray-800 hover:underline" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
+            <a class="login__link text-xs text-gray-800 hover:underline" href="{% url 'accounts:email' %}">{% trans "Forgot password?" %}</a>
+        </div>
+
+        {% if form.errors and form.non_field_errors %}
+        <p class="text-red-500 text-xs italic">{{form.non_field_errors}}</p>
         {% endif %}
-    </div>
-    <div class="form-area">
-        <p class="data-name">{% trans "Password" %}</p>
-        {{ form.password }}
-        {% if form.errors.password %}
-        <p class="error-message">{{ form.errors.password }}</p>
+
+        {% if messages %}
+        {% for message in messages %}
+        <p class="text-green-800 text-xs italic">{{ message }}</p>
+        {% endfor %}
         {% endif %}
-    </div>
 
-    <div class="other-options">
-        <a class="login__link" href="{% url 'accounts:register' %}">{% trans "Register" %}</a>
-        <a class="login__link" href="{% url 'accounts:email' %}">{% trans "Forgot password?" %}</a>
-    </div>
+        <button class="text-white btn-custom w-full px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300"
+                type="submit">
+            {% trans "Login" %}
+        </button>
 
-    {% if form.errors and form.non_field_errors %}
-    <p>{{form.non_field_errors}}</p>
-    {% endif %}
-
-    {% if messages %}
-    {% for message in messages %}
-    <p>{{ message }}</p>
-    {% endfor %}
-    {% endif %}
-    <button class="account-button register-button" type="submit">{% trans "Login" %}</button>
-</form>
-
-<h3>Google login</h3>
-<a href="{% provider_login_url 'google' %}?next={{ request.path|slice:':-11' }}">{% trans "Login with Google" %}</a>
-
+        <a href="{% provider_login_url 'google' %}"
+           class="text-white btn-custom w-full px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300 inline-block mt-3 text-center">
+            {% trans "Login with Google" %}
+        </a>
+    </form>
+</div>
 {% endblock %}

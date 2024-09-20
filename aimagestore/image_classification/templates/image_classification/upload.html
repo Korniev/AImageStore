@@ -1,19 +1,30 @@
 {% extends 'aimagestore/base.html' %}
 {% load i18n %}
+{% load static %}
+
+{% block body_class %}upload-page{% endblock %}
+
+{% block custom_styles %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="text-center">{% trans 'Please, upload your image!' %}</h2>
-    <form method="post" enctype="multipart/form-data">
+<div class="absolute top-[4rem] left-0 p-40 transform -translate-x-[7.5%]">
+    <h2 class="text-[3.0rem] font-semibold text-white/80 leading-tight mb-8 text-left">{% trans 'Please, upload your image!' %}</h2>
+    <form method="post" enctype="multipart/form-data" class="space-y-6">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="file-upload" class="custom-file-upload btn btn-primary">
-                {% trans "Choose file" %}
-            </label>
-            <input id="file-upload" type="file" name="image" style="display:none;">
-            <span id="file-chosen">{% trans "No file chosen" %}</span>
+        <div class="flex flex-col items-left space-y-4">
+            <div class="flex items-center space-x-4">
+                <label for="file-upload" class="text-white text-center btn-custom px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300 w-80">
+                    {% trans "Choose file" %}
+                </label>
+                <input id="file-upload" type="file" name="image" style="display:none;">
+                <span id="file-chosen" class="text-white">{% trans "No file chosen" %}</span>
+            </div>
+            <button type="submit" class="text-white text-center btn-custom px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300 w-80">
+                {% trans 'Upload image' %}
+            </button>
         </div>
-        <button type="submit" class="btn btn-primary">{% trans 'Upload image' %}</button>
     </form>
 </div>
 

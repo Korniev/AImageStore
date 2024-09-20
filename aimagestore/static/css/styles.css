@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styles for the home.html video background */
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Language selector dropdown */
+#languageMenu a {
+    width: 100%;
+    display: block;
+    justify-content: center;
+    padding: 0.5rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#languageMenu a:hover {
+    background-color: #f3f4f6;
+    color: #000;
+}
+
+#LanguageMenu {
+    width: 60px;
+}
+
+/* Styles for the upload.html background */
+body.upload-page {
+    background-image: url('/static/img_background/upload_background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Styles for the login.html background */
+body.login-page {
+    background-image: url('/static/img_background/login_background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Styles for the register.html background */
+body.register-page {
+    background-image: url('/static/img_background/register_background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Styles for the result.html */
+body.result-page {
+    background-image: url('/static/img_background/result_background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Styles for the reset_password.html background */
+body.password-reset-page {
+    background-image: url('/static/img_background/reset_password_background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Styles for the code-verification.html background */
+body.code-verification-page {
+    background-image: url('/static/img_background/code_verification_background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Styles for the new_password.html background */
+body.new-password-page {
+    background-image: url('/static/img_background/new_password_background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+body.google-login-page {
+    background-image: url('/static/img_background/dog_4.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+
+/* Styles for errors messages */
+ul.errorlist {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.errorlist li {
+    color: #ef4444;
+    font-size: 0.875rem;
+    font-style: italic;
+}

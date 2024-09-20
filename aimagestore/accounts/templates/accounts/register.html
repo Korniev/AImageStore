@@ -1,49 +1,83 @@
 {% extends 'aimagestore/base.html' %}
 {% load i18n %}
-{% block content %}
-<form class="form-login" method="post">
-    {% csrf_token %}
-    <div class="form-area register-area">
-        <p class="data-name">{% trans "Username" %}</p>
-        {{ form.username }}
-        {% if form.errors.username %}
-        <p class="error-message">{{ form.errors.username }}</p>
-        {% endif %}
-    </div>
-    <div class="form-area register-area">
-        <p class="data-name">{% trans "Email" %}</p>
-        {{ form.email }}
-        {% if form.errors.email %}
-        <p class="error-message">{{ form.errors.email }}</p>
-        {% endif %}
-    </div>
-    <div class="form-area register-area">
-        <p class="data-name">{% trans "Password" %}</p>
-        {{ form.password1 }}
-        {% if form.errors.password1 %}
-        <p class="error-message">{{ form.errors.password1 }}</p>
-        {% endif %}
-    </div>
-    <div class="form-area register-area">
-        <p class="data-name">{% trans "Repeat password" %}</p>
-        {{ form.password2 }}
-        {% if form.errors.password2 %}
-        <p class="error-message">{{ form.errors.password2 }}</p>
-        {% endif %}
-    </div>
-    <div class="other-options">
-        <a class="login__link" href="{% url 'accounts:login' %}">{% trans "Account already exist" %}</a>
-        <a class="login__link" href="{% url 'accounts:email' %}">{% trans "Forgot password?" %}</a>
-    </div>
-    {% if form.errors and form.non_field_errors %}
-    <p>{{form.non_field_errors}}</p>
-    {% endif %}
-    {% if messages %}
-    {% for message in messages %}L
-    <p>{{ message }}</p>L
-    {% endfor %}
-    {% endif %}
-    <button class="account-button register-button" type="submit">{% trans "Register" %}</button>
-</form>
+{% load static %}
 
+{% block body_class %}register-page{% endblock %}
+
+{% block custom_styles %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="absolute top-[8rem] left-[7rem] transform w-full">
+    <form class="form-login max-w-md bg-white/20 shadow-md rounded-lg p-6" method="post">
+        {% csrf_token %}
+
+        <h2 class="text-2xl text-white font-extrabold text-center mb-6">{% trans "Register Your Account" %}</h2>
+
+        <div class="form-area mb-6">
+            <label for="username" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                {% trans "Username" %}
+            </label>
+            <input type="text" name="username"
+                   class="appearance-none block w-full bg-transparent border-b border-white text-gray-700 focus:outline-none focus:border-white py-2 px-4 leading-tight">
+            {% if form.errors.username %}
+            <p class="error-message text-red-500 text-xs italic">{{ form.errors.username }}</p>
+            {% endif %}
+        </div>
+
+        <div class="form-area mb-6">
+            <label for="email" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                {% trans "Email" %}
+            </label>
+            <input type="email" name="email"
+                   class="appearance-none block w-full bg-transparent border-b border-white text-gray-700 focus:outline-none focus:border-white py-2 px-4 leading-tight">
+            {% if form.errors.email %}
+            <p class="error-message text-red-500 text-xs italic">{{ form.errors.email }}</p>
+            {% endif %}
+        </div>
+
+        <div class="form-area mb-6">
+            <label for="password1" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                {% trans "Password" %}
+            </label>
+            <input type="password" name="password1"
+                   class="appearance-none block w-full bg-transparent border-b border-white text-gray-700 focus:outline-none focus:border-white py-2 px-4 leading-tight">
+            {% if form.errors.password1 %}
+            <p class="error-message text-red-500 text-xs italic">{{ form.errors.password1 }}</p>
+            {% endif %}
+        </div>
+
+        <div class="form-area mb-6">
+            <label for="password2" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                {% trans "Repeat Password" %}
+            </label>
+            <input type="password" name="password2"
+                   class="appearance-none block w-full bg-transparent border-b border-white text-gray-700 focus:outline-none focus:border-white py-2 px-4 leading-tight">
+            {% if form.errors.password2 %}
+            <p class="text-red-500 text-xs italic ">{{ form.errors.password2 }}</p>
+            {% endif %}
+        </div>
+
+        <div class="other-options mb-6 flex justify-between">
+            <a class="login__link text-xs text-gray-800 hover:underline" href="{% url 'accounts:login' %}">{% trans "Already have an account?" %}</a>
+            <a class="login__link text-xs text-gray-800 hover:underline" href="{% url 'accounts:email' %}">{% trans "Forgot password?" %}</a>
+        </div>
+
+        {% if form.errors and form.non_field_errors %}
+        <p class="text-red-500 text-xs italic">{{ form.non_field_errors }}</p>
+        {% endif %}
+
+        {% if messages %}
+        {% for message in messages %}
+        <p class="text-green-500 text-xs italic">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+
+        <button class="text-white btn-custom w-full px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300"
+                type="submit">
+            {% trans "Register" %}
+        </button>
+    </form>
+</div>
 {% endblock %}
