@@ -58,8 +58,7 @@
             {% trans "Login" %}
         </button>
 
-<!--        <h3 class="mt-6 text-center font-semibold text-lg">{% trans "Google login" %}</h3>-->
-        <a href="https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=536660690040-qu2jqju4uoh9fhs4i5q4dtcb0a19qvgo.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Fen%2Faccounts%2Fgoogle%2Flogin%2Fcallback%2F&scope=email%20profile&response_type=code&state=nfVeG8eUnfm4gYYW&access_type=online&service=lso&o2v=2&ddm=0&flowName=GeneralOAuthFlow"
+        <a href="{% provider_login_url 'google' %}"
            class="text-white btn-custom w-full px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300 inline-block mt-3 text-center">
             {% trans "Login with Google" %}
         </a>

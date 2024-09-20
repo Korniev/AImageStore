@@ -1481,6 +1481,11 @@ video {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -1516,6 +1521,16 @@ video {
   color: rgb(21 128 61 / var(--tw-text-opacity));
 }
 
+.text-green-800 {
+  --tw-text-opacity: 1;
+  color: rgb(22 101 52 / var(--tw-text-opacity));
+}
+
+.text-green-900 {
+  --tw-text-opacity: 1;
+  color: rgb(20 83 45 / var(--tw-text-opacity));
+}
+
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
@@ -1541,16 +1556,6 @@ video {
 
 .text-white\/80 {
   color: rgb(255 255 255 / 0.8);
-}
-
-.text-green-900 {
-  --tw-text-opacity: 1;
-  color: rgb(20 83 45 / var(--tw-text-opacity));
-}
-
-.text-green-800 {
-  --tw-text-opacity: 1;
-  color: rgb(22 101 52 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1758,8 +1763,17 @@ body.code-verification-page {
   height: 100vh;
 }
 
+/* Styles for the new_password.html background */
+
 body.new-password-page {
   background-image: url('/static/img_background/new_password_background.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+body.google-login-page {
+  background-image: url('/static/img_background/dog_4.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;

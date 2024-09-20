@@ -91,13 +91,21 @@ body.code-verification-page {
     height: 100vh;
 }
 
-
+/* Styles for the new_password.html background */
 body.new-password-page {
     background-image: url('/static/img_background/new_password_background.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
 }
+
+body.google-login-page {
+    background-image: url('/static/img_background/dog_4.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
 
 /* Styles for errors messages */
 ul.errorlist {
