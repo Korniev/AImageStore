@@ -58,11 +58,25 @@
             </li>
             {% endif %}
             <li>
+                {% if request.user.is_authenticated %}
                 <a href="{% url 'classify:classify_image' %}"
                    class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
                     {% trans "Classify" %}
                 </a>
+                {% else %}
+                <div class="relative group">
+                    <a href="#"
+                       class="text-white btn-custom px-6 py-2 rounded-lg border-2 border-transparent opacity-50 cursor-not-allowed">
+                        {% trans "Classify" %}
+                    </a>
+                    <div class="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 text-white text-sm rounded-md py-2 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center"
+                         style="min-width: 220px">
+                        {% trans "Please log in to use this feature :)" %}
+                    </div>
+                </div>
+                {% endif %}
             </li>
+
         </ul>
 
         <!-- Right Side: Language Selector -->
