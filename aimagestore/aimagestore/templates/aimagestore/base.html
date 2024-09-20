@@ -85,6 +85,8 @@
                     class="inline-flex justify-center w-full rounded-md border btn-custom shadow-sm px-6 py-2 text-white hover:border-white border-2 focus:outline-none">
                 {% if LANGUAGE_CODE == 'en' %}
                 EN
+                {% elif LANGUAGE_CODE == 'es' %}
+                ES
                 {% elif LANGUAGE_CODE == 'uk' %}
                 UA
                 {% else %}
@@ -107,7 +109,7 @@
                     {% get_language_info_list for LANGUAGES as languages %}
                     {% for lang in languages %}
                     <a href="/{{ lang.code }}/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-100">
-                        {{ lang.name_local }}
+                        {{ lang.name_local|title }}
                     </a>
                     {% endfor %}
                 </div>
@@ -173,10 +175,10 @@
 
         const greetings = {
             'en': "Assistant: Hello! How can I help you today?",
-            'uk': "Assistant: Привіт! Чим можу допомогти?"
+            'uk': "Assistant: Привіт! Чим можу допомогти?",
+            'es': "Assistant: Hola! ¿Cómo puedo ayudarte hoy?"
         };
 
-        // open/close window chat
         chatToggleButton.onclick = function() {
             if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
                 chatContainer.style.display = "flex";
@@ -187,8 +189,11 @@
         };
 
         function greetUser() {
+            if (localStorage.getItem('isGreeted') !== 'true') {
                 const greetMessage = greetings[currentLanguage];
                 addBotMessage(greetMessage);
+                localStorage.setItem('isGreeted', 'true');
+            }
         }
 
         function addBotMessage(text) {
