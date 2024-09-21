@@ -6,11 +6,16 @@ from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.conf import settings
 from django.utils.translation import gettext as _
 
 from .models import User
 from .forms import RegisterForm, LoginForm, ChangePasswordForm
 from .utils import send_otp
+
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from allauth.socialaccount.models import SocialToken, SocialAccount
 
 
 def login_view(request):
@@ -85,7 +90,9 @@ def code_verification_view(request):
                         if type == 'new-password':
                             return redirect('accounts:new-password')
                         else:
-                            messages.success(request, _("Congratulations {username}! You have verified your email.").format(username=user.username))
+                            messages.success(request,
+                                             _("Congratulations {username}! You have verified your email.").format(
+                                                 username=user.username))
                             return redirect('accounts:login')
                     except User.DoesNotExist:
                         messages.error(request, _("User with this email was not found."))
@@ -158,3 +165,34 @@ def logout_view(request):
 
 def profile_view(request):
     return render(request, "accounts/profile.html")
+
+
+def connect_google_drive(request):
+    if request.user.is_authenticated:
+        social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
+        if social_account:
+            token = SocialToken.objects.filter(account=social_account).first()
+
+            if token:
+                creds = Credentials(
+                    token=token.token,
+                    refresh_token=token.token_secret,
+                    token_uri='https://oauth2.googleapis.com/token',
+                    client_id=settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
+                    client_secret=settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET,
+                )
+
+                service = build('drive', 'v3', credentials=creds)
+
+                results = service.files().list(pageSize=10, fields="files(id, name)").execute()
+                files = results.get('files', [])
+
+                return render(request, 'accounts/google_drive.html', {'files': files})
+            else:
+                messages.error(request, "Google token not found.")
+        else:
+            messages.error(request, "No Google account connected.")
+    else:
+        messages.error(request, "You need to log in to connect to Google Drive.")
+
+    return redirect('accounts:profile')

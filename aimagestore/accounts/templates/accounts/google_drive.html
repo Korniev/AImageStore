@@ -1,0 +1,17 @@
+{% extends 'aimagestore/base.html' %}
+{% load i18n %}
+{% block content %}
+{% load static %}
+
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl text-white font-extrabold mb-6">{% trans "Your Google Drive Files" %}</h2>
+
+    <ul>
+        {% for file in files %}
+        <li class="text-white mb-3">
+            <a href="https://drive.google.com/file/d/{{ file.id }}/view" target="_blank">{{ file.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
