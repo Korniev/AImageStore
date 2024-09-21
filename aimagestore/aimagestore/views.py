@@ -1,7 +1,7 @@
 import os
 import requests
 from django.shortcuts import render
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.utils.translation import get_language
 from django.http import JsonResponse
 
