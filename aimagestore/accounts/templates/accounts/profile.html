@@ -1,10 +1,73 @@
 {% extends 'aimagestore/base.html' %}
 {% load i18n %}
+{% load static %}
+{% load socialaccount %}
+
+{% block body_class %}profile-page{% endblock %}
+
+{% block custom_styles %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
+<div class="flex justify-center items-stretch space-x-72 px-16 absolute top-[8rem] w-full">
+    <!-- Profile section -->
+    <div class="form-login w-full max-w-md bg-white/20 shadow-md rounded-lg p-6 min-h-[250px] flex flex-col justify-between">
+        <div>
+            <h2 class="text-2xl text-white font-extrabold text-center mb-6">{% trans "Your Profile" %}</h2>
 
+            <div class="form-area mb-6">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    {% trans "Username" %}
+                </label>
+                <p class="text-sm text-gray-300">{{ request.user.username }}</p>
+            </div>
 
-<h1 class="title profile-name">{{ request.user.username }}</h1>
-<h2 class="sub-text">{{ request.user.email }}</h2>
+            <div class="form-area mb-6">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    {% trans "Email" %}
+                </label>
+                <p class="text-sm text-gray-300">{{ request.user.email }}</p>
+            </div>
+        </div>
 
+        <div class="text-center mt-6">
+            <a href="{% url 'accounts:logout' %}"
+               class="text-white btn-custom w-full px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300 text-center">
+                {% trans "Logout" %}
+            </a>
+        </div>
+    </div>
 
+    <!-- Google Drive section -->
+    <div class="form-login w-full max-w-md bg-white/20 shadow-md rounded-lg p-6 min-h-[250px] flex flex-col justify-between">
+        <div class="flex-grow">
+            <h3 class="text-2xl text-white font-extrabold text-center mb-6">{% trans "Google Drive" %}</h3>
+
+            <div class="drive-section text-center flex-grow mt-auto">
+                {% if files %}
+                <ul class="drive-files">
+                    {% for file in files %}
+                    <li class="drive-file mb-2">
+                        <a href="https://drive.google.com/file/d/{{ file.id }}" target="_blank"
+                           class="text-white hover:underline">
+                            {{ file.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="text-gray-300 mb-4 mt-auto">{% trans "No files found in Google Drive." %}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="text-center mt-auto">
+            <a href="{% url 'accounts:connect_google_drive' %}"
+               class="text-white btn-custom w-full px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300 text-center">
+                {% trans "Connect Google Drive" %}
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

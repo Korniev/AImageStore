@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 
 import pyotp
@@ -14,8 +15,11 @@ from .forms import RegisterForm, LoginForm, ChangePasswordForm
 from .utils import send_otp
 
 from google.oauth2.credentials import Credentials
+from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 from allauth.socialaccount.models import SocialToken, SocialAccount
+from django.utils import timezone
+from datetime import timedelta
 
 
 def login_view(request):
@@ -168,12 +172,37 @@ def profile_view(request):
 
 
 def connect_google_drive(request):
+    time.sleep(1)
+    print("Connect Google Drive function called")
+
     if request.user.is_authenticated:
-        social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
+        print(f"Checking if user is authenticated: {request.user.is_authenticated}")
+        print(f"Trying to find social account for user {request.user.email}")
+        print(f"Current user ID: {request.user.id}, email: {request.user.email}")
+        social_account = SocialAccount.objects.filter(user=request.user, provider='Google').first()
+        print(f"Social Account found: {social_account}")
+
         if social_account:
             token = SocialToken.objects.filter(account=social_account).first()
 
             if token:
+
+                if token.expires_at < timezone.now():
+                    print("Access token expired. Refreshing the token...")
+                    creds = Credentials(
+                        token=None,
+                        refresh_token=token.token_secret,
+                        token_uri='https://oauth2.googleapis.com/token',
+                        client_id=settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
+                        client_secret=settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET,
+                    )
+                    creds.refresh(Request())
+
+                    token.token = creds.token
+                    token.expires_at = timezone.now() + timedelta(seconds=creds.expiry)
+                    token.save()
+                    print("Token refreshed and saved.")
+
                 creds = Credentials(
                     token=token.token,
                     refresh_token=token.token_secret,
@@ -182,17 +211,36 @@ def connect_google_drive(request):
                     client_secret=settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET,
                 )
 
-                service = build('drive', 'v3', credentials=creds)
+                try:
+                    service = build('drive', 'v3', credentials=creds)
+                    results = service.files().list(pageSize=10, fields="files(id, name, thumbnailLink)").execute()
+                    files = results.get('files', [])
+                    return render(request, 'accounts/google_drive.html', {'files': files})
 
-                results = service.files().list(pageSize=10, fields="files(id, name)").execute()
-                files = results.get('files', [])
+                except Exception as e:
+                    print(f"Error while accessing Google Drive API: {e}")
+                    messages.error(request, "Error accessing Google Drive.")
+                    return redirect('accounts:profile')
 
-                return render(request, 'accounts/google_drive.html', {'files': files})
             else:
                 messages.error(request, "Google token not found.")
+
         else:
             messages.error(request, "No Google account connected.")
+
     else:
         messages.error(request, "You need to log in to connect to Google Drive.")
 
     return redirect('accounts:profile')
+
+
+def google_login_callback(request):
+    social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
+    if social_account:
+        token = SocialToken.objects.filter(account=social_account).first()
+        if token:
+            print(f"Token exists for user {request.user}: {token.token}")
+        else:
+            print("Token not found.")
+    else:
+        print("Social account not found.")
