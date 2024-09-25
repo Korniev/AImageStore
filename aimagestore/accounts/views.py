@@ -176,8 +176,6 @@ def connect_google_drive(request):
     print("Connect Google Drive function called")
 
     if request.user.is_authenticated:
-        print(f"Checking if user is authenticated: {request.user.is_authenticated}")
-        print(f"Trying to find social account for user {request.user.email}")
         print(f"Current user ID: {request.user.id}, email: {request.user.email}")
         social_account = SocialAccount.objects.filter(user=request.user, provider='Google').first()
         print(f"Social Account found: {social_account}")
@@ -198,8 +196,8 @@ def connect_google_drive(request):
                     )
                     creds.refresh(Request())
 
-                    token.token = creds.token
-                    token.expires_at = timezone.now() + timedelta(seconds=creds.expiry)
+                    expiry_seconds = (creds.expiry - datetime.now()).total_seconds()
+                    token.expires_at = timezone.now() + timedelta(seconds=expiry_seconds)
                     token.save()
                     print("Token refreshed and saved.")
 
