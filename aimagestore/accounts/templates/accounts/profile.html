@@ -6,7 +6,7 @@
 {% block body_class %}profile-page{% endblock %}
 
 {% block custom_styles %}
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+<link href="{% static 'css/styles.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -40,10 +40,18 @@
     </div>
 
     <!-- Google Drive section -->
-    <div class="form-login w-full max-w-md bg-white/20 shadow-md rounded-lg p-6 min-h-[250px] flex flex-col justify-between">
+    <div class="form-login w-full max-w-md bg-white/20 shadow-md rounded-lg p-6 min-h-[300px] flex flex-col justify-between">
         <div class="flex-grow">
-            <h3 class="text-2xl text-white font-extrabold text-center mb-6">{% trans "Google Drive" %}</h3>
+            <h3 class="text-2xl text-white font-extrabold text-center mb-6">
+                {% trans "Google Drive" %}
+            </h3>
 
+            <!-- Іконка Google Drive -->
+            <div class="drive-icon-container text-center mb-6">
+                <img src="{% static 'img_background/google-drive-logo.png' %}" alt="Google Drive" class="h-24 w-24 mx-auto">
+            </div>
+
+            <!-- Файли Google Drive (якщо підключено) -->
             <div class="drive-section text-center flex-grow mt-auto">
                 {% if files %}
                 <ul class="drive-files">
@@ -57,11 +65,14 @@
                     {% endfor %}
                 </ul>
                 {% else %}
-                <p class="text-gray-300 mb-4 mt-auto">{% trans "No files found in Google Drive." %}</p>
+                <p class="text-gray-300 mb-4 mt-auto">
+                    {% trans "Connect your google drive to start saving your images." %}
+                </p>
                 {% endif %}
             </div>
         </div>
 
+        <!-- Кнопка підключення -->
         <div class="text-center mt-auto">
             <a href="{% url 'accounts:connect_google_drive' %}"
                class="text-white btn-custom w-full px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300 text-center">
@@ -69,5 +80,6 @@
             </a>
         </div>
     </div>
+
 </div>
 {% endblock %}
