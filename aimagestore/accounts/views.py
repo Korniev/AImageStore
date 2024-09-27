@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from .models import User
 from .forms import RegisterForm, LoginForm, ChangePasswordForm
@@ -173,7 +173,6 @@ def profile_view(request):
 
 def connect_google_drive(request):
     time.sleep(1)
-    print("Connect Google Drive function called")
 
     if request.user.is_authenticated:
         print(f"Current user ID: {request.user.id}, email: {request.user.email}")
@@ -217,17 +216,17 @@ def connect_google_drive(request):
 
                 except Exception as e:
                     print(f"Error while accessing Google Drive API: {e}")
-                    messages.error(request, "Error accessing Google Drive.")
+                    messages.error(request, _("Error accessing Google Drive."))
                     return redirect('accounts:profile')
 
             else:
-                messages.error(request, "Google token not found.")
+                messages.error(request, _("Google token not found."))
 
         else:
-            messages.error(request, "No Google account connected.")
+            messages.error(request, _("No Google account connected."))
 
     else:
-        messages.error(request, "You need to log in to connect to Google Drive.")
+        messages.error(request, _("You need to log in to connect to Google Drive."))
 
     return redirect('accounts:profile')
 
