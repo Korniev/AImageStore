@@ -46,12 +46,12 @@
                 {% trans "Google Drive" %}
             </h3>
 
-            <!-- Іконка Google Drive -->
+            <!-- Logo Google Drive -->
             <div class="drive-icon-container text-center mb-6">
                 <img src="{% static 'img_background/google-drive-logo.png' %}" alt="Google Drive" class="h-24 w-24 mx-auto">
             </div>
 
-            <!-- Файли Google Drive (якщо підключено) -->
+            <!-- Files Google Drive -->
             <div class="drive-section text-center flex-grow mt-auto">
                 {% if files %}
                 <ul class="drive-files">
@@ -66,7 +66,7 @@
                 </ul>
                 {% else %}
                 <p class="text-gray-300 mb-4 mt-auto">
-                    {% trans "Connect your google drive to start saving your images." %}
+                    {% trans "Connect your Google Drive to start saving your images. You should log in via Google Auth. " %}
                 </p>
                 {% endif %}
             </div>
@@ -74,7 +74,7 @@
 
         <!-- Кнопка підключення -->
         <div class="text-center mt-auto">
-            <a href="{% url 'accounts:connect_google_drive' %}"
+            <a href="{% url 'accounts:connect_google_drive' %}?lang={{ LANGUAGE_CODE }}"
                class="text-white btn-custom w-full px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300 text-center">
                 {% trans "Connect Google Drive" %}
             </a>

@@ -1,4 +1,3 @@
-import time
 from datetime import datetime
 
 import pyotp
@@ -8,11 +7,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from .models import User
 from .forms import RegisterForm, LoginForm, ChangePasswordForm
-from .utils import send_otp
+from .utils import send_otp, set_language
 
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
@@ -24,6 +24,8 @@ from datetime import timedelta
 
 def login_view(request):
     user = request.user
+    lang_code = set_language(request)
+
     if user.is_authenticated:
         return HttpResponse(_("You are already logged in as {username}.").format(username=user.username))
 
@@ -36,22 +38,24 @@ def login_view(request):
             if user is not None:
                 if user.is_verified:
                     login(request, user)
-                    return redirect('main')
+                    return redirect(f"{reverse('main')}?lang={lang_code}")
                 else:
                     request.session['email'] = email
                     send_otp(request, email)
                     messages.error(request, _("Please verify your email."))
-                    return redirect('accounts:code-verification')
+                    return redirect(f"{reverse('accounts:code-verification')}?lang={lang_code}")
         else:
             print(form.errors)
     else:
         form = LoginForm()
 
-    return render(request, 'accounts/login.html', {'form': form})
+    return render(request, 'accounts/login.html', {'form': form, 'lang_code': lang_code})
 
 
 def register_view(request, *args, **kwargs):
     user = request.user
+    lang_code = set_language(request)
+
     if user.is_authenticated:
         return HttpResponse(_("You are already logged in as {username}.").format(username=user.username))
 
@@ -62,7 +66,7 @@ def register_view(request, *args, **kwargs):
             email = form.cleaned_data.get('email')
             request.session['email'] = email
             send_otp(request, email)
-            return redirect('accounts:code-verification')
+            return redirect(f"{reverse('accounts:code-verification')}?lang={lang_code}")
     else:
         form = RegisterForm()
 
@@ -92,22 +96,22 @@ def code_verification_view(request):
                         del request.session['otp_secret_key']
                         del request.session['otp_valid_date']
                         if type == 'new-password':
-                            return redirect('accounts:new-password')
+                            return redirect(f"{reverse('accounts:new-password')}?lang={set_language(request)}")
                         else:
                             messages.success(request,
                                              _("Congratulations {username}! You have verified your email.").format(
                                                  username=user.username))
-                            return redirect('accounts:login')
+                            return redirect(f"{reverse('accounts:login')}?lang={set_language(request)}")
                     except User.DoesNotExist:
                         messages.error(request, _("User with this email was not found."))
-                        return redirect('accounts:register')
+                        return redirect(f"{reverse('accounts:register')}?lang={set_language(request)}")
                 else:
                     messages.error(request, _("Your code is incorrect."))
-                    return redirect('accounts:code-verification')
+                    return redirect(f"{reverse('accounts:code-verification')}?lang={set_language(request)}")
 
             else:
                 messages.error(request, _("Your code is no longer valid."))
-                return redirect('accounts:code-verification')
+                return redirect(f"{reverse('accounts:code-verification')}?lang={set_language(request)}")
 
     return render(request, "accounts/code-verification.html")
 
@@ -131,10 +135,10 @@ def email_view(request):
             request.session['email'] = email
             request.session['type'] = "new-password"
             send_otp(request, email)
-            return redirect('accounts:code-verification')
+            return redirect(f"{reverse('accounts:code-verification')}?lang={set_language(request)}")
         except User.DoesNotExist:
             messages.error(request, _("User with this email was not found."))
-            return redirect('accounts:email')
+            return redirect(f"{reverse('accounts:email')}?lang={set_language(request)}")
     return render(request, "accounts/email.html")
 
 
@@ -151,28 +155,43 @@ def change_password_view(request):
                     user.password = make_password(new_password)
                     user.save()
                     messages.success(request, _("Your password has been successfully changed."))
-                    return redirect('accounts:login')
+                    return redirect(f"{reverse('accounts:login')}?lang={set_language(request)}")
                 else:
                     form.add_error('confirm_new_password', _("Passwords do not match."))
         else:
             form = ChangePasswordForm()
     except User.DoesNotExist:
         messages.error(request, _("User with this email was not found."))
-        return redirect('accounts:email')
+        return redirect(f"{reverse('accounts:email')}?lang={set_language(request)}")
     return render(request, 'accounts/new-password.html', {'form': form})
 
 
 def logout_view(request):
+    lang_code = set_language(request)
+
     logout(request)
-    return redirect('accounts:login')
+    messages.add_message(request, messages.SUCCESS, _("You have been logged out successfully."))
+
+    return redirect(f"{reverse('accounts:login')}?lang={lang_code}")
 
 
 def profile_view(request):
+    lang_code = set_language(request)
+
     return render(request, "accounts/profile.html")
+    # if request.user.is_authenticated:
+    #     social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
+    #     if social_account:
+    #         messages.info(request, _("Google account is connected."))
+    #     else:
+    #         messages.warning(request, _("No connected Google account."))
+    #     return render(request, "accounts/profile.html")
+    # else:
+    #     return redirect('accounts:login')
 
 
 def connect_google_drive(request):
-    time.sleep(1)
+    lang_code = set_language(request)
 
     if request.user.is_authenticated:
         print(f"Current user ID: {request.user.id}, email: {request.user.email}")
@@ -217,7 +236,7 @@ def connect_google_drive(request):
                 except Exception as e:
                     print(f"Error while accessing Google Drive API: {e}")
                     messages.error(request, _("Error accessing Google Drive."))
-                    return redirect('accounts:profile')
+                    return redirect(f"{reverse('accounts:profile')}?lang={lang_code}")
 
             else:
                 messages.error(request, _("Google token not found."))
@@ -228,11 +247,13 @@ def connect_google_drive(request):
     else:
         messages.error(request, _("You need to log in to connect to Google Drive."))
 
-    return redirect('accounts:profile')
+    return redirect(f"{reverse('accounts:profile')}?lang={lang_code}")
 
 
 def google_login_callback(request):
-    social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
+    lang_code = set_language(request)
+
+    social_account = SocialAccount.objects.filter(user=request.user, provider='Google').first()
     if social_account:
         token = SocialToken.objects.filter(account=social_account).first()
         if token:
@@ -241,3 +262,5 @@ def google_login_callback(request):
             print("Token not found.")
     else:
         print("Social account not found.")
+
+    return redirect(f"{reverse('accounts:profile')}?lang={lang_code}")

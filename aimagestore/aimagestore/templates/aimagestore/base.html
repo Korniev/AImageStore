@@ -22,7 +22,7 @@
 <nav class="bg-transparent w-full p-4 px-6">
     <div class="container mx-auto flex justify-between items-center">
         <!-- Left Side: Logo -->
-        <a href="/" class="flex items-center">
+        <a href="/{{ LANGUAGE_CODE }}/" class="flex items-center">
             <img src="{% static 'img_background/circ_logo.png' %}" alt="Logo"
                  class="h-12 w-auto max-h-20 max-w-20 object-contain mr-3">
             <span class="text-white text-lg font-semibold">AImageStore</span>
@@ -31,33 +31,33 @@
         <!-- Middle: Nav Links -->
         <ul class="flex space-x-6">
             <li>
-                <a href="{% url 'home' %}"
+                <a href="{% url 'home' %}?lang={{ LANGUAGE_CODE }}"
                    class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
                     {% trans "Home" %}
                 </a>
             </li>
             {% if not request.user.is_authenticated %}
             <li>
-                <a href="{% url 'accounts:register' %}"
+                <a href="{% url 'accounts:register' %}?lang={{ LANGUAGE_CODE }}"
                    class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
                     {% trans "Register" %}
                 </a>
             </li>
             <li>
-                <a href="{% url 'accounts:login' %}"
+                <a href="{% url 'accounts:login' %}?lang={{ LANGUAGE_CODE }}"
                    class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
                     {% trans "Login" %}
                 </a>
             </li>
             {% else %}
             <li>
-                <a href="{% url 'accounts:logout' %}"
+                <a href="{% url 'accounts:logout' %}?lang={{ LANGUAGE_CODE }}"
                    class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
                     {% trans "Logout" %}
                 </a>
             </li>
             <li>
-                <a href="{% url 'accounts:profile' %}"
+                <a href="{% url 'accounts:profile' %}?lang={{ LANGUAGE_CODE }}"
                    class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
                     {% trans "Profile" %}
                 </a>
@@ -65,7 +65,7 @@
             {% endif %}
             <li>
                 {% if request.user.is_authenticated %}
-                <a href="{% url 'classify:classify_image' %}"
+                <a href="{% url 'classify:classify_image' %}?lang={{ LANGUAGE_CODE }}"
                    class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
                     {% trans "Classify" %}
                 </a>
