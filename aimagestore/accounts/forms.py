@@ -89,7 +89,7 @@ class LoginForm(AuthenticationForm):
         if email and password:
             self.user_cache = authenticate(email=email, password=password)
             if self.user_cache is None:
-                raise ValidationError('Invalid email or password.')
+                raise ValidationError(_("Invalid email or password."))
 
         return self.cleaned_data
 

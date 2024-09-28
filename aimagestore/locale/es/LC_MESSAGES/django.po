@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-20 16:33+0200\n"
+"POT-Creation-Date: 2024-09-27 23:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
+
 #: accounts/forms.py:16
 msgid "Username is required."
 msgstr "Username es obligatorio."
@@ -42,7 +43,7 @@ msgstr "La contraseña es obligatoria."
 msgid "Confirm your password."
 msgstr "Confirme su contraseña."
 
-#: accounts/forms.py:41 accounts/views.py:145
+#: accounts/forms.py:41 accounts/views.py:160
 msgid "Passwords do not match."
 msgstr "Las contraseñas no coinciden."
 
@@ -56,11 +57,13 @@ msgstr "Este campo es obligatorio."
 
 #: accounts/forms.py:67
 msgid "This password is too short. It must contain at least 8 characters!"
-msgstr "Esta contraseña es demasiado corta. Debe contener al menos 8 caracteres!"
+msgstr ""
+"Esta contraseña es demasiado corta. Debe contener al menos 8 caracteres!"
 
 #: accounts/forms.py:69
 msgid "This password must contain at least one character that is not a digit!"
-msgstr "Este contraseña debe contener al menos un caracter que no sea un número!"
+msgstr ""
+"Este contraseña debe contener al menos un caracter que no sea un número!"
 
 #: accounts/forms.py:71
 msgid "The password is too similar to the username!"
@@ -69,6 +72,10 @@ msgstr "La contraseña es demasiado similar al nombre de usuario!"
 #: accounts/forms.py:73
 msgid "The two password fields didn’t match."
 msgstr "Las dos contraseñaes de contraseña no coinciden!"
+
+#: accounts/forms.py:92
+msgid "Invalid email or password."
+msgstr "Correo electrónico o contraseña incorrecta."
 
 #: accounts/manager.py:12
 msgid "Please enter a valid email address!"
@@ -104,12 +111,13 @@ msgstr "Restablecer contraseña"
 
 #: accounts/templates/accounts/email.html:19
 #: accounts/templates/accounts/login.html:21
+#: accounts/templates/accounts/profile.html:28
 #: accounts/templates/accounts/register.html:31
 msgid "Email"
 msgstr "Email"
 
-#: accounts/templates/accounts/email.html:37
-#: aimagestore/templates/aimagestore/base.html:137
+#: accounts/templates/accounts/email.html:36
+#: aimagestore/templates/aimagestore/base.html:147
 msgid "Send"
 msgstr "Enviar"
 
@@ -139,11 +147,25 @@ msgstr "El código está vigente por 5 minutos."
 
 #: accounts/templates/accounts/email_template.html:273
 msgid "If you have not sent a request, you can ignore the text of this letter."
-msgstr "Si no ha enviado una petición, puede ignorar el texto de este correo electrónico."
+msgstr ""
+"Si no ha enviado una petición, puede ignorar el texto de este correo "
+"electrónico."
 
 #: accounts/templates/accounts/email_template.html:274
 msgid "Best wishes from the AImageStore team."
 msgstr "Mejores deseos de la equipo AImageStore."
+
+#: accounts/templates/accounts/google_drive.html:17
+msgid "Back to Profile"
+msgstr "Volver al Perfil"
+
+#: accounts/templates/accounts/google_drive.html:19
+msgid "Your Google Drive Files"
+msgstr "Tus archivos de Google Drive"
+
+#: accounts/templates/accounts/google_drive.html:51
+msgid "No files found in your Google Drive."
+msgstr "Ningun archivo encontrado en su Google Drive."
 
 #: accounts/templates/accounts/login.html:17
 msgid "Log In to Your Account"
@@ -190,13 +212,39 @@ msgstr "Repite la nueva contraseña"
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#: accounts/templates/accounts/register.html:16
-msgid "Register Your Account"
-msgstr "Registrar su cuenta"
+#: accounts/templates/accounts/profile.html:17
+msgid "Your Profile"
+msgstr "Tu Perfil"
 
+#: accounts/templates/accounts/profile.html:21
 #: accounts/templates/accounts/register.html:20
 msgid "Username"
 msgstr "Username"
+
+#: accounts/templates/accounts/profile.html:37
+#: aimagestore/templates/aimagestore/base.html:56
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: accounts/templates/accounts/profile.html:46
+msgid "Google Drive"
+msgstr "Google Drive"
+
+#: accounts/templates/accounts/profile.html:69
+msgid ""
+"Connect your Google Drive to start saving your images. You should log in via "
+"Google Auth. "
+msgstr ""
+"Conecte su Google Drive para comenzar a guardar sus imágenes. Debe que "
+"iniciar sesión con Google Auth."
+
+#: accounts/templates/accounts/profile.html:79
+msgid "Connect Google Drive"
+msgstr "Conectar Google Drive"
+
+#: accounts/templates/accounts/register.html:16
+msgid "Register Your Account"
+msgstr "Registrar su cuenta"
 
 #: accounts/templates/accounts/register.html:53
 msgid "Repeat Password"
@@ -206,50 +254,71 @@ msgstr "Repite la contraseña"
 msgid "Already have an account?"
 msgstr "Ya tiene una cuenta?"
 
-#: accounts/views.py:19 accounts/views.py:47
+#: accounts/views.py:30 accounts/views.py:60
 #, python-brace-format
 msgid "You are already logged in as {username}."
 msgstr "Tu ya está conectado como {username}."
 
-#: accounts/views.py:34
+#: accounts/views.py:45
 msgid "Please verify your email."
 msgstr "Por favor, verifique su correo electrónico."
 
-#: accounts/views.py:88
+#: accounts/views.py:102
 #, python-brace-format
 msgid "Congratulations {username}! You have verified your email."
 msgstr "Felicidades {username}! Has verificado tu correo electrónico."
 
-#: accounts/views.py:91 accounts/views.py:111 accounts/views.py:125
-#: accounts/views.py:149
+#: accounts/views.py:106 accounts/views.py:126 accounts/views.py:140
+#: accounts/views.py:164
 msgid "User with this email was not found."
 msgstr "Usuario con este correo electrónico no encontrado."
 
-#: accounts/views.py:94
+#: accounts/views.py:109
 msgid "Your code is incorrect."
 msgstr "Tu código es incorrecto."
 
-#: accounts/views.py:98
+#: accounts/views.py:113
 msgid "Your code is no longer valid."
 msgstr "Tu código ya no está vigente."
 
-#: accounts/views.py:109
+#: accounts/views.py:124
 msgid "A new code has been sent."
 msgstr "Nuevo código enviado."
 
-#: accounts/views.py:142
+#: accounts/views.py:157
 msgid "Your password has been successfully changed."
 msgstr "Tu contraseña ha sido cambiada correctamente."
 
-#: aimagestore/settings.py:152
+#: accounts/views.py:173
+#| msgid "Your password has been successfully changed."
+msgid "You have been logged out successfully."
+msgstr "Ha cerrado la sesión correctamente."
+
+#: accounts/views.py:238
+msgid "Error accessing Google Drive."
+msgstr "Error al acceder al Google Drive."
+
+#: accounts/views.py:242
+msgid "Google token not found."
+msgstr "El token de Google no fue encontrado."
+
+#: accounts/views.py:245
+msgid "No Google account connected."
+msgstr "No hay cuenta de Google conectada."
+
+#: accounts/views.py:248
+msgid "You need to log in to connect to Google Drive."
+msgstr "Tienes que iniciar sesión para conectarte a Google Drive."
+
+#: aimagestore/settings.py:161
 msgid "English"
 msgstr "Inglés"
 
-#: aimagestore/settings.py:153
+#: aimagestore/settings.py:162
 msgid "Ukrainian"
 msgstr "Ucraniano"
 
-#: aimagestore/settings.py:154
+#: aimagestore/settings.py:163
 msgid "Spanish"
 msgstr "Español"
 
@@ -257,28 +326,28 @@ msgstr "Español"
 msgid "Home"
 msgstr "Inicio"
 
-#: aimagestore/templates/aimagestore/base.html:56
-msgid "Logout"
-msgstr "Cerrar sesión"
+#: aimagestore/templates/aimagestore/base.html:62
+msgid "Profile"
+msgstr "Perfil"
 
-#: aimagestore/templates/aimagestore/base.html:64
 #: aimagestore/templates/aimagestore/base.html:70
+#: aimagestore/templates/aimagestore/base.html:76
 msgid "Classify"
 msgstr "Classificar imagen"
 
-#: aimagestore/templates/aimagestore/base.html:74
+#: aimagestore/templates/aimagestore/base.html:80
 msgid "Please log in to use this feature :)"
 msgstr "Por favor, inicia sesión para usar esta función :)"
 
-#: aimagestore/templates/aimagestore/base.html:91
+#: aimagestore/templates/aimagestore/base.html:99
 msgid "Language"
 msgstr "Idioma"
 
-#: aimagestore/templates/aimagestore/base.html:128
+#: aimagestore/templates/aimagestore/base.html:138
 msgid "Chat with us!"
 msgstr "Chate con nosotros!"
 
-#: aimagestore/templates/aimagestore/base.html:135
+#: aimagestore/templates/aimagestore/base.html:145
 msgid "Type your message here..."
 msgstr "Escriba su mensaje aquí..."
 
@@ -296,7 +365,8 @@ msgstr "Entrar con Google"
 
 #: aimagestore/templates/socialaccount/login.html:17
 msgid "You are about to sign in using a third-party account from Google."
-msgstr "Tu está a punto de iniciar sesión usando una cuenta de terceros de Google."
+msgstr ""
+"Tu está a punto de iniciar sesión usando una cuenta de terceros de Google."
 
 #: aimagestore/templates/socialaccount/login.html:25
 msgid "Continue with Google"
@@ -335,6 +405,10 @@ msgid "Learn more about"
 msgstr "Leer más sobre"
 
 #: image_classification/templates/image_classification/result.html:28
+msgid "Save Image to Google Drive"
+msgstr "Guardar imagen en Google Drive"
+
+#: image_classification/templates/image_classification/result.html:32
 msgid "Upload new image"
 msgstr "Cargar nueva imagen"
 

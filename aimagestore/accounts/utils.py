@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import pyotp
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+from django.utils import translation
 from django.utils.html import strip_tags
 from django.conf import settings
 
@@ -30,3 +31,10 @@ def send_otp(request, email, purpose='verification'):
     mail = EmailMultiAlternatives(subject, plain_message, from_email, to_email)
     mail.attach_alternative(html_message, "text/html")
     mail.send()
+
+
+def set_language(request):
+    lang_code = request.GET.get('lang', request.session.get('django_language', 'en'))
+    translation.activate(lang_code)
+    request.session['django_language'] = lang_code
+    return lang_code

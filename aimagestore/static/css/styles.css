@@ -101,7 +101,23 @@ body.new-password-page {
 
 /* Styles for the google-login.html background */
 body.google-login-page {
-    background-image: url('/static/img_background/dog_4.jpg');
+    background-image: url('/static/img_background/google_login_background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Styles for the profile.html background */
+body.profile-page {
+    background-image: url('/static/img_background/new-profile-page.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* Styles for the google-drive.html background */
+body.google-drive-page {
+    background-image: url('/static/img_background/google_drive_background.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
