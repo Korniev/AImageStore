@@ -1,0 +1,40 @@
+{% extends 'aimagestore/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block body_class %}result-page{% endblock %}
+
+{% block custom_styles %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="result-container text-center mt-10">
+    <h2 class="text-[2.4rem] font-semibold text-white/80 mb-8 leading-tight">
+        {% trans 'Classification result' %}
+    </h2>
+    <div>
+        <img src="{{ MEDIA_URL }}{{ img_url }}?{{ unique_id }}" alt="Uploaded Image"
+             class="max-w-lg mx-auto rounded-lg shadow-md my-6">
+        <h3 class="text-white mb-6 text-xl">
+            {% trans 'Prediction:' %} {{ class_name }} ({{ probability|floatformat:2 }}%)
+        </h3>
+        <a href="https://en.wikipedia.org/wiki/{{ class_name|default_if_none:'Animal' }}" target="_blank"
+           class="btn-custom text-white bg-white/30 hover:border-white border-2 transition duration-300 py-2 px-6 rounded-lg mt-1 inline-block">
+            {% trans 'Learn more about' %} {{ class_name }}
+        </a>
+        <a href="{% url 'classify:save_to_drive' img_url=img_url %}"
+           class="btn-custom text-white bg-white/30 hover:border-white border-2 transition duration-300 py-2 px-6 rounded-lg mt-1 inline-block">
+            {% trans 'Save Image to Google Drive' %}
+        </a>
+        <a href="{% url 'classify:classify_image' %}"
+           class="btn-custom text-white bg-white/30 hover:border-white border-2 transition duration-300 py-2 px-6 rounded-lg mt-1 inline-block">
+            {% trans 'Upload new image' %}
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

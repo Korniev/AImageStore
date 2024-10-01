@@ -1,0 +1,41 @@
+{% extends 'aimagestore/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block body_class %}code-verification-page{% endblock %}
+
+{% block custom_styles %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="absolute top-[8rem] left-[7rem] transform w-full">
+    <form class="form-login max-w-md bg-white/20 shadow-md rounded-lg p-6" method="POST">
+        {% csrf_token %}
+
+        <h2 class="text-2xl text-white font-extrabold text-center mb-6">{% trans "Enter Code to Verify" %}</h2>
+
+        <div class="form-area mb-6">
+            <label for="otp_digit" class="block uppercase tracking-wide text-gray-900 text-xs font-bold mb-2">
+                {% trans "Code" %}
+            </label>
+            <input class="appearance-none block w-full bg-transparent border-b border-white text-gray-900 focus:outline-none focus:border-white py-2 px-4 leading-tight"
+                   type="number" name="otp_digit">
+        </div>
+
+        {% if messages %}
+        {% for message in messages %}
+        <p class="text-green-500 text-xs italic">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+
+        <div class="other-options mb-6 flex justify-between">
+            <a class="text-xs text-gray-900 hover:underline" href="{% url 'accounts:resend-otp' %}">{% trans "Resend code" %}</a>
+        </div>
+
+        <button class="text-white btn-custom w-full px-6 py-2 rounded-lg hover:border-white border-2 transition duration-300"
+                type="submit">
+            {% trans "Confirm" %}
+        </button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,255 @@
+{% load i18n %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Tailwind CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'img_background/circ_logo.png' %}" type="image/png">
+
+    <!-- Custom Styles for specific pages -->
+    {% block custom_styles %}{% endblock %}
+
+    <title>AImageStore</title>
+</head>
+<body class="h-screen {% block body_class %}{% endblock %}">
+
+<!-- Tailwind NavBar -->
+<nav class="bg-transparent w-full p-4 px-6">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Left Side: Logo -->
+        <a href="/{{ LANGUAGE_CODE }}/" class="flex items-center">
+            <img src="{% static 'img_background/circ_logo.png' %}" alt="Logo"
+                 class="h-12 w-auto max-h-20 max-w-20 object-contain mr-3">
+            <span class="text-white text-lg font-semibold">AImageStore</span>
+        </a>
+
+        <!-- Middle: Nav Links -->
+        <ul class="flex space-x-6">
+            <li>
+                <a href="{% url 'home' %}?lang={{ LANGUAGE_CODE }}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Home" %}
+                </a>
+            </li>
+            {% if not request.user.is_authenticated %}
+            <li>
+                <a href="{% url 'accounts:register' %}?lang={{ LANGUAGE_CODE }}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Register" %}
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'accounts:login' %}?lang={{ LANGUAGE_CODE }}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Login" %}
+                </a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'accounts:logout' %}?lang={{ LANGUAGE_CODE }}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Logout" %}
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'accounts:profile' %}?lang={{ LANGUAGE_CODE }}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Profile" %}
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'classify:classify_image' %}?lang={{ LANGUAGE_CODE }}"
+                   class="text-white btn-custom px-6 py-2 rounded-lg hover:border-white border-2 border-transparent transition duration-300">
+                    {% trans "Classify" %}
+                </a>
+                {% else %}
+                <div class="relative group">
+                    <a href="#"
+                       class="text-white btn-custom px-6 py-2 rounded-lg border-2 border-transparent opacity-50 cursor-not-allowed">
+                        {% trans "Classify" %}
+                    </a>
+                    <div class="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 text-white text-sm rounded-md py-2 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center"
+                         style="min-width: 220px">
+                        {% trans "Please log in to use this feature :)" %}
+                    </div>
+                </div>
+                {% endif %}
+            </li>
+
+        </ul>
+
+        <!-- Right Side: Language Selector -->
+        <div class="relative inline-block text-left">
+            <button id="languageButton"
+                    class="inline-flex justify-center w-full rounded-md border btn-custom shadow-sm px-6 py-2 text-white hover:border-white border-2 focus:outline-none">
+                {% if LANGUAGE_CODE == 'en' %}
+                EN
+                {% elif LANGUAGE_CODE == 'es' %}
+                ES
+                {% elif LANGUAGE_CODE == 'uk' %}
+                UA
+                {% else %}
+                {% trans "Language" %}
+                {% endif %}
+                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                     fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clip-rule="evenodd"/>
+                </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="languageMenu"
+                 class="origin-top absolute left-1/2 transform -translate-x-1/2 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
+                <div class="py-1">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for lang in languages %}
+                    <a href="/{{ lang.code }}/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-100">
+                        {{ lang.name_local|title }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div id="message-container" class="fixed top-4 right-4 z-50 space-y-4"></div>
+
+
+<button id="chat-toggle-button"
+        class="fixed bottom-5 right-5 bg-green-800 text-white rounded-full w-12 h-12 text-2xl flex items-center justify-center z-50">
+    💬
+</button>
+
+<div id="chat-container"
+     class="fixed bottom-20 right-5 w-96 max-h-[70%] bg-white bg-opacity-40 rounded-lg shadow-lg overflow-hidden hidden flex flex-col">
+    <div id="chat-header" class="bg-green-800 text-white p-4 text-center cursor-pointer">
+        {% trans 'Chat with us!' %}
+    </div>
+    <div id="messages" class="p-4 overflow-y-auto flex-1 space-y-3">
+        <!-- Повідомлення будуть додаватися тут -->
+    </div>
+    <div id="chat-input-container" class="flex p-4 bg-gray-200">
+        <input id="chat-input" class="flex-1 p-2 border border-gray-300 rounded-md"
+               placeholder="{% trans 'Type your message here...' %}">
+        <button id="send-button" class="p-2 ml-2 bg-green-800 text-white rounded-md">
+            {% trans 'Send' %}
+        </button>
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const languageButton = document.getElementById('languageButton');
+        const languageMenu = document.getElementById('languageMenu');
+
+        languageButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+            languageMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!languageMenu.contains(e.target)) {
+                languageMenu.classList.remove('show');
+            }
+        });
+    });
+
+    // open/close window chat
+    document.addEventListener("DOMContentLoaded", function() {
+        const chatToggleButton = document.getElementById("chat-toggle-button");
+        const chatContainer = document.getElementById("chat-container");
+        const chatInput = document.getElementById("chat-input");
+        const sendButton = document.getElementById("send-button");
+        const messages = document.getElementById("messages");
+
+        const currentLanguage = "{{ request.LANGUAGE_CODE }}";
+
+        const greetings = {
+            'en': "Assistant: Hello! How can I help you today?",
+            'uk': "Assistant: Привіт! Чим можу допомогти?",
+            'es': "Assistant: Hola! ¿Cómo puedo ayudarte hoy?"
+        };
+
+        chatToggleButton.onclick = function() {
+            if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
+                chatContainer.style.display = "flex";
+                greetUser();
+            } else {
+                chatContainer.style.display = "none";
+            }
+        };
+
+        function greetUser() {
+            if (localStorage.getItem('isGreeted') !== 'true') {
+                const greetMessage = greetings[currentLanguage];
+                addBotMessage(greetMessage);
+                localStorage.setItem('isGreeted', 'true');
+            }
+        }
+
+        function addBotMessage(text) {
+            const botMessageElement = document.createElement("div");
+            botMessageElement.classList.add("message", "bot", "bg-gray-100", "p-3", "rounded-md", "mb-3", "text-left", "max-w-xs");
+            botMessageElement.textContent = `${text}`;
+            messages.appendChild(botMessageElement);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const userMessageElement = document.createElement("div");
+            userMessageElement.classList.add("message", "user", "bg-orange-50", "p-3", "rounded-md", "mb-3", "text-left", "max-w-xs");
+            userMessageElement.textContent = `You: ${text}`;
+            messages.appendChild(userMessageElement);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function sendMessage() {
+            const message = chatInput.value;
+            if (message.trim() === '') return;
+
+            addUserMessage(message);
+
+            fetch(`/chat/?message=${encodeURIComponent(message)}`)
+                .then(response => response.json())
+                .then(data => {
+                    addBotMessage(data.response);
+                });
+
+            chatInput.value = '';
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        sendButton.onclick = function() {
+            sendMessage();
+        };
+
+        chatInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+
+        localStorage.removeItem('isGreeted');
+    });
+</script>
+
+</body>
+</html>
