@@ -195,7 +195,7 @@ def connect_google_drive(request):
 
     if request.user.is_authenticated:
         print(f"Current user ID: {request.user.id}, email: {request.user.email}")
-        social_account = SocialAccount.objects.filter(user=request.user, provider='Google').first()
+        social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
         print(f"Social Account found: {social_account}")
 
         if social_account:
@@ -254,7 +254,7 @@ def connect_google_drive(request):
 def google_login_callback(request):
     lang_code = set_language(request)
 
-    social_account = SocialAccount.objects.filter(user=request.user, provider='Google').first()
+    social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
     if social_account:
         token = SocialToken.objects.filter(account=social_account).first()
         if token:
