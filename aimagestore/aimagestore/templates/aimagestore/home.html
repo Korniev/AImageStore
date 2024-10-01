@@ -1,0 +1,23 @@
+{% extends 'aimagestore/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block custom_styles %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="video-container">
+    <video autoplay loop muted playsinline>
+        <source src="{% static 'img_background/monkey_home.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="absolute top-[5rem] left-0 p-40 transform -translate-x-[7.5%]">
+  <h1 class="text-[3.5rem] font-semibold text-white/70 text-center leading-tight">
+    {% trans "Discover more about" %} <br>
+    {% trans "animals with AI!" %}
+  </h1>
+</div>
+{% endblock %}

@@ -1,0 +1,434 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-27 23:18+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: accounts/forms.py:16
+msgid "Username is required."
+msgstr "Ім'я користувача є обов'язковим!"
+
+#: accounts/forms.py:17
+msgid "Username must be at least 3 characters long."
+msgstr "Ім'я користувача повинно містити щонайменше 3 символи."
+
+#: accounts/forms.py:25
+msgid "Email is required."
+msgstr "Адреса електронної пошти є обов'язковою!"
+
+#: accounts/forms.py:26
+msgid "Enter a valid email address."
+msgstr "Будь ласка, введіть дійсну адресу електронної пошти!"
+
+#: accounts/forms.py:33
+msgid "Password is required."
+msgstr "Це поле є обов'язковим!"
+
+#: accounts/forms.py:40
+msgid "Confirm your password."
+msgstr "Забули пароль?"
+
+#: accounts/forms.py:41 accounts/views.py:160
+msgid "Passwords do not match."
+msgstr "Паролі не збігаються."
+
+#: accounts/forms.py:52
+msgid "This email is already in use!"
+msgstr "Ця електронна адреса вже використовується!"
+
+#: accounts/forms.py:58
+msgid "This field is required."
+msgstr "Це поле є обов'язковим!"
+
+#: accounts/forms.py:67
+msgid "This password is too short. It must contain at least 8 characters!"
+msgstr ""
+"Цей пароль занадто короткий. Він повинен містити щонайменше 8 символів!"
+
+#: accounts/forms.py:69
+msgid "This password must contain at least one character that is not a digit!"
+msgstr "Цей пароль повинен містити хоча б один символ, який не є цифрою!"
+
+#: accounts/forms.py:71
+msgid "The password is too similar to the username!"
+msgstr "Пароль занадто схожий на ім'я користувача!"
+
+#: accounts/forms.py:73
+msgid "The two password fields didn’t match."
+msgstr "Паролі не збігаються."
+
+#: accounts/forms.py:92
+msgid "Invalid email or password."
+msgstr "Забули пароль?"
+
+#: accounts/manager.py:12
+msgid "Please enter a valid email address!"
+msgstr "Будь ласка, введіть дійсну адресу електронної пошти!"
+
+#: accounts/manager.py:19
+msgid "Email address is required!"
+msgstr "Адреса електронної пошти є обов'язковою!"
+
+#: accounts/manager.py:21
+msgid "Username is required!"
+msgstr "Ім'я користувача є обов'язковим!"
+
+#: accounts/templates/accounts/code-verification.html:15
+msgid "Enter Code to Verify"
+msgstr "Введіть код для підтвердження"
+
+#: accounts/templates/accounts/code-verification.html:19
+msgid "Code"
+msgstr "Код"
+
+#: accounts/templates/accounts/code-verification.html:32
+msgid "Resend code"
+msgstr "Відправити код повторно"
+
+#: accounts/templates/accounts/code-verification.html:37
+msgid "Confirm"
+msgstr "Підтвердити"
+
+#: accounts/templates/accounts/email.html:15
+msgid "Reset Your Password"
+msgstr "Скинути пароль"
+
+#: accounts/templates/accounts/email.html:19
+#: accounts/templates/accounts/login.html:21
+#: accounts/templates/accounts/profile.html:28
+#: accounts/templates/accounts/register.html:31
+msgid "Email"
+msgstr "Електронна пошта"
+
+#: accounts/templates/accounts/email.html:36
+#: aimagestore/templates/aimagestore/base.html:147
+msgid "Send"
+msgstr "Відправити"
+
+#: accounts/templates/accounts/email_template.html:7
+msgid "Mail from AImageStore"
+msgstr "Лист від AImageStore"
+
+#: accounts/templates/accounts/email_template.html:245
+msgid "Please confirm your email"
+msgstr "Будь ласка, введіть Вашу пошту"
+
+#: accounts/templates/accounts/email_template.html:247
+msgid "AImageStore email confirmation"
+msgstr "Підтвердження пошти AImageStore"
+
+#: accounts/templates/accounts/email_template.html:253
+msgid "Hello "
+msgstr "Привіт "
+
+#: accounts/templates/accounts/email_template.html:254
+msgid "Your email verification code:"
+msgstr "Ваш код для підтвердження пошти:"
+
+#: accounts/templates/accounts/email_template.html:272
+msgid "The code is valid for 5 minutes."
+msgstr "Код діє 5 хвилин."
+
+#: accounts/templates/accounts/email_template.html:273
+msgid "If you have not sent a request, you can ignore the text of this letter."
+msgstr "Якщо Ви не надсилали запит, то можете проігнорувати текст цього листа."
+
+#: accounts/templates/accounts/email_template.html:274
+msgid "Best wishes from the AImageStore team."
+msgstr "З найкращими побажаннями команда AImageStore."
+
+#: accounts/templates/accounts/google_drive.html:17
+msgid "Back to Profile"
+msgstr "Повернутися до Профілю"
+
+#: accounts/templates/accounts/google_drive.html:19
+msgid "Your Google Drive Files"
+msgstr "Твої файли Google Drive"
+
+#: accounts/templates/accounts/google_drive.html:51
+msgid "No files found in your Google Drive."
+msgstr "Нічого не знайдено у вашому Google Drive."
+
+#: accounts/templates/accounts/login.html:17
+msgid "Log In to Your Account"
+msgstr "Зайдіть у свій обліковий запис"
+
+#: accounts/templates/accounts/login.html:32
+#: accounts/templates/accounts/register.html:42
+msgid "Password"
+msgstr "Пароль"
+
+#: accounts/templates/accounts/login.html:42
+#: accounts/templates/accounts/register.html:79
+#: aimagestore/templates/aimagestore/base.html:43
+msgid "Register"
+msgstr "Зареєструватися"
+
+#: accounts/templates/accounts/login.html:43
+#: accounts/templates/accounts/register.html:64
+msgid "Forgot password?"
+msgstr "Забули пароль?"
+
+#: accounts/templates/accounts/login.html:58
+#: aimagestore/templates/aimagestore/base.html:49
+msgid "Login"
+msgstr "Увійти"
+
+#: accounts/templates/accounts/login.html:63
+msgid "Login with Google"
+msgstr "Увійти за допомогою Google"
+
+#: accounts/templates/accounts/new-password.html:16
+msgid "Change Your Password"
+msgstr "Змініть свій пароль"
+
+#: accounts/templates/accounts/new-password.html:20
+msgid "New password"
+msgstr "Новий пароль"
+
+#: accounts/templates/accounts/new-password.html:31
+msgid "Repeat new password"
+msgstr "Повторіть новий пароль"
+
+#: accounts/templates/accounts/new-password.html:42
+msgid "Change password"
+msgstr "Змінити пароль"
+
+#: accounts/templates/accounts/profile.html:17
+msgid "Your Profile"
+msgstr "Твій Профіль"
+
+#: accounts/templates/accounts/profile.html:21
+#: accounts/templates/accounts/register.html:20
+msgid "Username"
+msgstr "Ім'я користувача"
+
+#: accounts/templates/accounts/profile.html:37
+#: aimagestore/templates/aimagestore/base.html:56
+msgid "Logout"
+msgstr "Вийти"
+
+#: accounts/templates/accounts/profile.html:46
+msgid "Google Drive"
+msgstr "Google Drive"
+
+#: accounts/templates/accounts/profile.html:69
+msgid ""
+"Connect your Google Drive to start saving your images. You should log in via "
+"Google Auth. "
+msgstr ""
+"Підключіть свій Google Drive, щоб почати зберігати ваші зображення. Ви "
+"повинні увійти за допомогою Google Auth."
+
+#: accounts/templates/accounts/profile.html:79
+msgid "Connect Google Drive"
+msgstr "Вперед з Google!"
+
+#: accounts/templates/accounts/register.html:16
+msgid "Register Your Account"
+msgstr "Зареєструйте свій обліковий запис"
+
+#: accounts/templates/accounts/register.html:53
+msgid "Repeat Password"
+msgstr "Повторіть пароль"
+
+#: accounts/templates/accounts/register.html:63
+msgid "Already have an account?"
+msgstr "У Вас вже є обліковий запис?"
+
+#: accounts/views.py:30 accounts/views.py:60
+#, python-brace-format
+msgid "You are already logged in as {username}."
+msgstr "Ви вже авторизовані як {username}."
+
+#: accounts/views.py:45
+msgid "Please verify your email."
+msgstr "Будь ласка, підвердіть свою пошту."
+
+#: accounts/views.py:102
+#, python-brace-format
+msgid "Congratulations {username}! You have verified your email."
+msgstr "Вітаємо {username}! Ви підтвердили свою пошту."
+
+#: accounts/views.py:106 accounts/views.py:126 accounts/views.py:140
+#: accounts/views.py:164
+msgid "User with this email was not found."
+msgstr "Користувача з такою поштою не знайдено."
+
+#: accounts/views.py:109
+msgid "Your code is incorrect."
+msgstr "Ваш код неправильний."
+
+#: accounts/views.py:113
+msgid "Your code is no longer valid."
+msgstr "Ваш код більше не діє."
+
+#: accounts/views.py:124
+msgid "A new code has been sent."
+msgstr "Новий код було відправлено."
+
+#: accounts/views.py:157
+msgid "Your password has been successfully changed."
+msgstr "Ваш пароль успішно змінено."
+
+#: accounts/views.py:173
+#| msgid "Your password has been successfully changed."
+msgid "You have been logged out successfully."
+msgstr "Ви успішно вийшли з аккаунту."
+
+#: accounts/views.py:238
+msgid "Error accessing Google Drive."
+msgstr "Помилка доступу до Google Drive."
+
+#: accounts/views.py:242
+msgid "Google token not found."
+msgstr "Гугл токен не знайдено."
+
+#: accounts/views.py:245
+msgid "No Google account connected."
+msgstr "Немає з'єднаного облікового запису Google."
+
+#: accounts/views.py:248
+msgid "You need to log in to connect to Google Drive."
+msgstr "Вам потрібно увійти, щоб підключити Google Drive."
+
+#: aimagestore/settings.py:161
+msgid "English"
+msgstr "Англійська"
+
+#: aimagestore/settings.py:162
+msgid "Ukrainian"
+msgstr "Українська"
+
+#: aimagestore/settings.py:163
+msgid "Spanish"
+msgstr "Іспанська"
+
+#: aimagestore/templates/aimagestore/base.html:36
+msgid "Home"
+msgstr "Головна"
+
+#: aimagestore/templates/aimagestore/base.html:62
+msgid "Profile"
+msgstr "Профіль"
+
+#: aimagestore/templates/aimagestore/base.html:70
+#: aimagestore/templates/aimagestore/base.html:76
+msgid "Classify"
+msgstr "Класифікувати зображення"
+
+#: aimagestore/templates/aimagestore/base.html:80
+msgid "Please log in to use this feature :)"
+msgstr "Будь ласка, увійдіть у свій обліковий запис :)"
+
+#: aimagestore/templates/aimagestore/base.html:99
+msgid "Language"
+msgstr "Мова"
+
+#: aimagestore/templates/aimagestore/base.html:138
+msgid "Chat with us!"
+msgstr "Чат з нами!"
+
+#: aimagestore/templates/aimagestore/base.html:145
+msgid "Type your message here..."
+msgstr "Введіть ваше повідомлення тут..."
+
+#: aimagestore/templates/aimagestore/home.html:19
+msgid "Discover more about"
+msgstr "Дізнайся більше про"
+
+#: aimagestore/templates/aimagestore/home.html:20
+msgid "animals with AI!"
+msgstr "тварин разом з AI!"
+
+#: aimagestore/templates/socialaccount/login.html:15
+msgid "Sign In Via Google"
+msgstr "Хочете увійти через Google?"
+
+#: aimagestore/templates/socialaccount/login.html:17
+msgid "You are about to sign in using a third-party account from Google."
+msgstr ""
+"Нажимаючи на кнопку нижче, Ви бажаєте увійти за допомогою облікового запису "
+"з Google."
+
+#: aimagestore/templates/socialaccount/login.html:25
+msgid "Continue with Google"
+msgstr "Вперед з Google!"
+
+#: aimagestore/views.py:53
+msgid "Assistant: "
+msgstr "Асистент: "
+
+#: aimagestore/views.py:57
+msgid "Sorry, something went wrong with the API request."
+msgstr "Вибачте, виникла помилка під час запиту до API."
+
+#: aimagestore/views.py:59
+msgid "I didn't get that. Can you please rephrase?"
+msgstr "Я не зрозумів. Будь ласка, перефразуйте ваше запитання? "
+
+#: aimagestore/views.py:65
+msgid "Hello!"
+msgstr "Привіт!"
+
+#: image_classification/forms.py:6
+msgid "Upload your image"
+msgstr "Завантажити зображення"
+
+#: image_classification/templates/image_classification/result.html:14
+msgid "Classification result"
+msgstr "Отриманий результат:"
+
+#: image_classification/templates/image_classification/result.html:20
+msgid "Prediction:"
+msgstr "Прогноз:"
+
+#: image_classification/templates/image_classification/result.html:24
+msgid "Learn more about"
+msgstr "Дізнатися більше про"
+
+#: image_classification/templates/image_classification/result.html:28
+msgid "Save Image to Google Drive"
+msgstr "Зберегти зображення до Google Drive"
+
+#: image_classification/templates/image_classification/result.html:32
+msgid "Upload new image"
+msgstr "Завантажити нове зображення?"
+
+#: image_classification/templates/image_classification/upload.html:13
+msgid "Please, upload your image!"
+msgstr "Будь ласка, завантажте зображення!"
+
+#: image_classification/templates/image_classification/upload.html:19
+msgid "Choose file"
+msgstr "Виберіть файл"
+
+#: image_classification/templates/image_classification/upload.html:22
+msgid "No file chosen"
+msgstr "Файл поки що не вибрано"
+
+#: image_classification/templates/image_classification/upload.html:25
+msgid "Upload image"
+msgstr "Завантажити зображення"
+
+#~ msgid "Enter your email"
+#~ msgstr "Введіть Вашу пошту"
+
+#~ msgid "Account already exist"
+#~ msgstr "Обліковий запис вже існує"
+
+#~ msgid "Bot: "
+#~ msgstr "Бот: "
