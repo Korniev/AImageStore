@@ -29,11 +29,14 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'mongrel-included-rodent.ngrok-free.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'mongrel-included-rodent.ngrok-free.app', 'aimagestore.fly.dev']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://mongrel-included-rodent.ngrok-free.app',
+    'https://aimagestore.fly.dev',
 ]
 
 # Application definition
@@ -57,7 +60,7 @@ INSTALLED_APPS = [
 
 ]
 
-SITE_ID = 3
+SITE_ID = 4
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
@@ -171,7 +174,7 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, '../staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

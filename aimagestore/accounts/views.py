@@ -230,6 +230,7 @@ def connect_google_drive(request):
                 try:
                     service = build('drive', 'v3', credentials=creds)
                     results = service.files().list(pageSize=10, fields="files(id, name, thumbnailLink)").execute()
+                    print(f"Google Drive API response: {results}")
                     files = results.get('files', [])
                     return render(request, 'accounts/google_drive.html', {'files': files})
 
