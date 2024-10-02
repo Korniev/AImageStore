@@ -121,3 +121,51 @@ We hope you enjoy our web application! :)
 
 <!-- Show funcionality -->
 ## Show funcionality
+
+When you enter in our web app, you can see the main page and some functionality:
+
+![Product Name Screen Shot](https://github.com/Korniev/AImageStore/blob/main/img_readme/main%202.png)
+
+As you can see, you have possibility to choose your prefered language - EN, UKR, ES:
+
+![Product Name Screen Shot](https://github.com/Korniev/AImageStore/blob/main/img_readme/main%202%20es.png)
+
+Then you can register in our website:
+
+![Product Name Screen Shot](https://github.com/Korniev/AImageStore/blob/main/img_readme/register.png)
+
+Also you have login if you've already registered before or you can choose Google Auth which is preferable as you can use some advanced functionality:
+
+![Product Name Screen Shot](https://github.com/Korniev/AImageStore/blob/main/img_readme/login.png)
+
+If you choose Google Auth:
+
+![Product Name Screen Shot](https://github.com/Korniev/AImageStore/blob/main/img_readme/google_auth.png)
+
+Profile page, where you can connect your google drive, looks like this:
+
+![Product Name Screen Shot](https://github.com/Korniev/AImageStore/blob/main/img_readme/profile.png)
+
+Google Drive page:
+
+![Product Name Screen Shot](https://github.com/Korniev/AImageStore/blob/main/img_readme/google%20drive.png)
+
+The main functionality is to classify animal image:
+
+![Product Name Screen Shot](https://github.com/Korniev/AImageStore/blob/main/img_readme/classify.png)
+
+And then receive an predict result, to save image into Google drive, read more about animal in Wiki etc:
+
+![Product Name Screen Shot](https://github.com/Korniev/AImageStore/blob/main/img_readme/classify_result.png)
+
+Actually, we will provide more interesting features. Stay tuned! :)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Contributors
+
+Project made by:
+* [JuliManhupli](https://github.com/JuliManhupli)
+* [Korniev](https://github.com/Korniev)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
