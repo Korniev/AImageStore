@@ -113,7 +113,11 @@ docker compose down
 ```
 
 Also you have posibility to start using AImageStore in dev mode!
+You should check file doc.md where you can find guide how to run web app on dev mode via ngrok.
 
 We hope you enjoy our web application! :)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Show funcionality -->
+## Show funcionality
