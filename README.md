@@ -80,7 +80,7 @@ To get installed our web app you should follow these simple steps:
 1. Clone the repository:
 
 ```bash
-https://github.com/Korniev/AIma
+https://github.com/Korniev/AImageStore
 ```
 
 2. Change to the project's directory:
@@ -113,7 +113,7 @@ docker compose down
 ```
 
 Also you have posibility to start using AImageStore in dev mode!
-You should check file doc.md where you can find guide how to run web app on dev mode via ngrok.
+You should check file DOC.md where you can find guide how to run web app on dev mode via ngrok.
 
 We hope you enjoy our web application! :)
 
